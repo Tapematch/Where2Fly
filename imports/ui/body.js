@@ -130,7 +130,7 @@ Template.body.onCreated(function() {
 });
 
 Template.body.onRendered(function() {
-    GoogleMaps.load({libraries: 'places' });
+    GoogleMaps.load({key: 'AIzaSyAfg1bHhw_1xJzHVBcHoVy7TKbGizKQCUM', libraries: 'places'});
 });
 
 Template.body.helpers({
