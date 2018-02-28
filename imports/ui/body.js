@@ -6,6 +6,45 @@ import './body.html';
 
 
 var visiblemarkers = [];
+
+function placeMarkerOnMap(place, map) {
+    var myLatlng = new google.maps.LatLng(place.lat, place.lng);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map.instance,
+        animation: google.maps.Animation.DROP,
+        title: place.title
+    });
+    marker.id = place._id;
+    visiblemarkers.push(marker);
+
+    var contentString = '<div id="' + place._id + 'info"></div>';
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+    var renderedView;
+    marker.addListener('click', function() {
+        infowindow.open(map.instance, marker);
+        if (renderedView === undefined) {
+            renderedView = Blaze.renderWithData(Template.placeinfo, {place}, document.getElementById(place._id + 'info'));
+        }
+    });
+    infowindow.addListener('closeclick', function() {
+        Blaze.remove(renderedView);
+        renderedView = undefined;
+    });
+
+    return marker;
+}
+
+function deleteMarker(place) {
+    visiblemarkers.forEach(function(marker) {
+        if (marker.id === place._id) {
+            marker.setMap(null);
+        }
+    });
+}
+
 Template.body.onCreated(function() {
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('placesMap', function(map) {
@@ -15,18 +54,15 @@ Template.body.onCreated(function() {
 
         places.forEach((place) => {
             var marker = placeMarkerOnMap(place, map);
-            visiblemarkers.push(marker);
             bounds.extend(marker.getPosition());
         });
         map.instance.fitBounds(bounds);
         places.observe({
             added(place) {
-                visiblemarkers.push(placeMarkerOnMap(place, map));
+                placeMarkerOnMap(place, map);
             },
             removed(oldPlace) {
-                for (var i = 0; i < markers.length; i++) {
-                    visiblemarkers[i].setMap(null);
-                }
+                deleteMarker(oldPlace);
             }
         });
 
@@ -79,7 +115,7 @@ Template.body.onCreated(function() {
                 infowindow.open(map.instance, marker);
 
                 var newPlace = {title: place.name, lat: place.geometry.location.lat, lng: place.geometry.location.lng};
-                Blaze.renderWithData(Template.placeinfo, newPlace, document.getElementById("newPlaceinfo"));
+                Blaze.renderWithData(Template.placeinfo, {place: newPlace}, document.getElementById("newPlaceinfo"));
 
                 if (place.geometry.viewport) {
                     // Only geocodes have viewport.
@@ -92,34 +128,6 @@ Template.body.onCreated(function() {
         });
     });
 });
-
-function placeMarkerOnMap(place, map) {
-    var myLatlng = new google.maps.LatLng(place.lat, place.lng);
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map.instance,
-        animation: google.maps.Animation.DROP,
-        title: place.title
-    });
-    var renderedView;
-
-    var contentString = '<div id="' + place._id + 'info"></div>';
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-    marker.addListener('click', function() {
-        infowindow.open(map.instance, marker);
-        if (renderedView === undefined) {
-            renderedView = Blaze.renderWithData(Template.placeinfo, place, document.getElementById(place._id + 'info'));
-        }
-    });
-    infowindow.addListener('closeclick', function() {
-        Blaze.remove(renderedView);
-        renderedView = undefined;
-    });
-    marker.infowindow = infowindow;
-    return marker;
-}
 
 Template.body.onRendered(function() {
     GoogleMaps.load({libraries: 'places' });

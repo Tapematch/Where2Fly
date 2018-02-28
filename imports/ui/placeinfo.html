@@ -1,11 +1,11 @@
 <template name="placeinfo">
     <form class="place-form">
         Title:<br>
-        <input type="text" name="title" value={{title}} /><br>
+        <input type="text" name="title" value={{place.title}} /><br>
         Latitude:<br>
-        <input type="text" name="lat" value={{lat}} /><br>
+        <input type="text" name="lat" value={{place.lat}} /><br>
         Longitude:<br>
-        <input type="text" name="lng" value={{lng}} /><br>
+        <input type="text" name="lng" value={{place.lng}} /><br>
         <input type="submit" value="Save" />
     </form>
     <button class="delete">Delete</button>

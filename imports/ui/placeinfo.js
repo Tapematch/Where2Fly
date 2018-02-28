@@ -30,6 +30,6 @@ Template.placeinfo.events({
         }
     },
     'click .delete'() {
-        Places.remove(this._id);
+        Places.remove(this.place._id);
     },
 });
