@@ -3,7 +3,7 @@ import { Places } from '../api/places.js';
 import './newplaceinfo.html';
 
 
-this.newPlaceMarker = null;
+this.searchmarker = null;
 this.searchPosition = new ReactiveDict();
 Template.newplaceinfo.helpers({
     searchLat() {
@@ -30,7 +30,7 @@ Template.newplaceinfo.events({
             lat,
             lng
         });
-        newPlaceMarker.setMap(null);
-        newPlaceMarker = null;
+        searchmarker.setMap(null);
+        searchmarker = null;
     },
 });

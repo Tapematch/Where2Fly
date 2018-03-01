@@ -47,10 +47,47 @@ function deleteMarker(place) {
     });
 }
 
-function setSearchMarker(marker) {
-    newPlaceMarker = marker;
+function setSearchPosition(marker) {
     searchPosition.set("searchLat", marker.getPosition().lat());
     searchPosition.set("searchLng", marker.getPosition().lng());
+}
+
+function setSearchMarker(map, location, name) {
+    if(searchmarker != null)
+        searchmarker.setMap(null);
+    searchmarker = null;
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+
+    var symbolThree = {
+        path: 'M -6,-6 6,6 M 6,-6 -6,6',
+        strokeColor: '#292',
+        strokeWeight: 3
+    };
+    searchmarker = new google.maps.Marker({
+        map: map.instance,
+        icon: symbolThree,
+        draggable:true,
+        title: name,
+        position: location
+    });
+    setSearchPosition(searchmarker);
+    searchmarker.addListener('dragend', function()
+    {
+        setSearchPosition(searchmarker);
+    });
+
+    var contentString = '<div id="newPlaceinfo"></div>';
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+    infowindow.open(map.instance, searchmarker);
+
+    var newPlace = {title: name, lat: location.lat, lng: location.lng};
+    Blaze.renderWithData(Template.newplaceinfo, {place: newPlace}, document.getElementById("newPlaceinfo"));
+
+    bounds.extend(location);
 }
 
 Template.body.onCreated(function() {
@@ -83,63 +120,24 @@ Template.body.onCreated(function() {
         map.instance.addListener('bounds_changed', function() {
             searchBox.setBounds(map.instance.getBounds());
         });
-
-        var searchmarker;
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
         searchBox.addListener('places_changed', function() {
             var places = searchBox.getPlaces();
-
             if (places.length == 0) {
                 return;
             }
-
-            if(searchmarker != null)
-                searchmarker.setMap(null);
-            searchmarker = null;
-
-            // For each place, get the icon, name and location.
-            var bounds = new google.maps.LatLngBounds();
             var place = places[0];
             if (!place.geometry) {
                 console.log("Returned place contains no geometry");
                 return;
             }
-
-            var symbolThree = {
-                path: 'M -6,-6 6,6 M 6,-6 -6,6',
-                strokeColor: '#292',
-                strokeWeight: 3
-            };
-            searchmarker = new google.maps.Marker({
-                map: map.instance,
-                icon: symbolThree,
-                draggable:true,
-                title: place.name,
-                position: place.geometry.location
-            });
-            setSearchMarker(searchmarker);
-            searchmarker.addListener('dragend', function()
-            {
-                setSearchMarker(searchmarker);
-            });
-
-            var contentString = '<div id="newPlaceinfo"></div>';
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-            infowindow.open(map.instance, searchmarker);
-
-            var newPlace = {title: place.name, lat: place.geometry.location.lat, lng: place.geometry.location.lng};
-            Blaze.renderWithData(Template.newplaceinfo, {place: newPlace}, document.getElementById("newPlaceinfo"));
-
-            if (place.geometry.viewport) {
-                // Only geocodes have viewport.
-                bounds.union(place.geometry.viewport);
-            } else {
-                bounds.extend(place.geometry.location);
-            }
+            setSearchMarker(map, place.geometry.location, place.name)
         });
+        map.instance.addListener('click', function(event) {
+            setSearchMarker(map, event.latLng, "new Place");
+        });
+
         map.instance.fitBounds(bounds);
     });
 });
