@@ -1,0 +1,12 @@
+<template name="newplaceinfo">
+    <h4 style="color: green">New Place</h4>
+    <form class="place-form">
+        Title:<br>
+        <input type="text" name="title" value={{place.title}} /><br>
+        Latitude:<br>
+        <input type="text" name="lat" value={{searchLat}} /><br>
+        Longitude:<br>
+        <input type="text" name="lng" value={{searchLng}} /><br>
+        <input type="submit" value="Save New Place" />
+    </form>
+</template>
