@@ -1,0 +1,25 @@
+<template name="home">
+
+
+    <h1>Startseite</h1>
+
+
+    <body>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div class="map-container">
+        {{> googleMap name="placesMap" options=placesMapOptions}}
+    </div>
+
+    <div>
+        <ul>
+            {{#each places}}
+            {{> place}}
+            {{/each}}
+        </ul>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    </body>
+
+</template>
