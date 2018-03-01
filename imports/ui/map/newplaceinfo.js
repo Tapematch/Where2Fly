@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { Places } from '../api/places.js';
+import { Places } from '../../api/places.js';
 import './newplaceinfo.html';
 
 

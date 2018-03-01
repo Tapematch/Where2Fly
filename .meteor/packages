@@ -24,3 +24,5 @@ reywood:bootstrap3-sass
 twbs:bootstrap
 dburles:google-maps
 reactive-dict
+kadira:blaze-layout
+kadira:flow-router

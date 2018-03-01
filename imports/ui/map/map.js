@@ -1,10 +1,10 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Blaze } from 'meteor/blaze'
-import { Places } from '../api/places.js';
+import { Places } from '../../api/places.js';
 import './placeinfo.js';
 import './newplaceinfo.js';
-import './body.html';
+import './map.html';
 
 
 var visiblemarkers = [];
@@ -90,7 +90,7 @@ function setSearchMarker(map, location, name) {
     bounds.extend(location);
 }
 
-Template.body.onCreated(function() {
+Template.map.onCreated(function() {
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('placesMap', function(map) {
         //add markers from mongodb
@@ -143,14 +143,11 @@ Template.body.onCreated(function() {
 });
 
 
-Template.body.onRendered(function() {
+Template.map.onRendered(function() {
     GoogleMaps.load({key: 'AIzaSyAfg1bHhw_1xJzHVBcHoVy7TKbGizKQCUM', libraries: 'places'});
 });
 
-Template.body.helpers({
-    places() {
-        return Places.find({});
-    },
+Template.map.helpers({
     placesMapOptions: function() {
         // Make sure the maps API has loaded
         if (GoogleMaps.loaded()) {

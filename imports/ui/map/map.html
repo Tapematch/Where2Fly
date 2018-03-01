@@ -1,0 +1,9 @@
+<template name="map">
+    <h2>Map</h2>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div class="map-container">
+        {{> googleMap name="placesMap" options=placesMapOptions}}
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</template>

@@ -1,0 +1,13 @@
+<template name="placelist">
+    <h2>Places</h2>
+    <div>
+        <ul>
+            {{#each places}}
+                {{> place}}
+            {{/each}}
+        </ul>
+    </div>
+</template>
+<template name="place">
+    <li>{{title}}: {{lat}}, {{lng}}</li>
+</template>
