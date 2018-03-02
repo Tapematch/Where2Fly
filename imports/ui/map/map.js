@@ -47,6 +47,26 @@ function deleteMarker(place) {
     });
 }
 
+function findClosestMarker(location) {
+    var lowestDistance = 999999999999;
+    var marker;
+    for( i=0;i<visiblemarkers.length; i++ ) {
+        var distance = google.maps.geometry.spherical.computeDistanceBetween(location, visiblemarkers[i].getPosition());
+        if (distance < lowestDistance){
+            lowestDistance = distance;
+            marker = visiblemarkers[i];
+        }
+    }
+    console.log(marker.title);
+    console.log(lowestDistance);
+    //only open marker if closer than 100m
+    if(lowestDistance < 100) {
+        return marker;
+    } else {
+        return null;
+    }
+}
+
 function setSearchPosition(marker) {
     searchPosition.set("searchLat", marker.getPosition().lat());
     searchPosition.set("searchLng", marker.getPosition().lng());
@@ -56,9 +76,6 @@ function setSearchMarker(map, location, name) {
     if(searchmarker != null)
         searchmarker.setMap(null);
     searchmarker = null;
-
-    // For each place, get the icon, name and location.
-    var bounds = new google.maps.LatLngBounds();
 
     var symbolThree = {
         path: 'M -6,-6 6,6 M 6,-6 -6,6',
@@ -82,12 +99,14 @@ function setSearchMarker(map, location, name) {
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
+    infowindow.addListener('closeclick', function() {
+        searchmarker.setMap(null);
+        searchmarker = null;
+    });
     infowindow.open(map.instance, searchmarker);
 
     var newPlace = {title: name, lat: location.lat, lng: location.lng};
     Blaze.renderWithData(Template.newplaceinfo, {place: newPlace}, document.getElementById("newPlaceinfo"));
-
-    bounds.extend(location);
 }
 
 Template.map.onCreated(function() {
@@ -132,19 +151,27 @@ Template.map.onCreated(function() {
                 console.log("Returned place contains no geometry");
                 return;
             }
-            setSearchMarker(map, place.geometry.location, place.name)
+            var location = place.geometry.location;
+            var marker = findClosestMarker(location);
+            if (marker != null){
+                //open infowindow of closest marker
+                google.maps.event.trigger(marker, 'click');
+            } else {
+                //create new marker
+                setSearchMarker(map, location, place.name)
+            }
+            map.instance.setCenter(location);
         });
         map.instance.addListener('click', function(event) {
             setSearchMarker(map, event.latLng, "new Place");
         });
-
         map.instance.fitBounds(bounds);
     });
 });
 
 
 Template.map.onRendered(function() {
-    GoogleMaps.load({key: 'AIzaSyAfg1bHhw_1xJzHVBcHoVy7TKbGizKQCUM', libraries: 'places'});
+    GoogleMaps.load({key: 'AIzaSyAfg1bHhw_1xJzHVBcHoVy7TKbGizKQCUM', libraries: 'places,geometry'});
 });
 
 Template.map.helpers({
