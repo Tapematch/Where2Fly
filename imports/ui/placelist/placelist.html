@@ -9,5 +9,5 @@
     </div>
 </template>
 <template name="place">
-    <li>{{title}}: {{lat}}, {{lng}}</li>
+    <li style="color:{{getColor flightLight}}">{{title}}: {{lat}}, {{lng}}, {{#if privateProperty}}is private property{{else}}is NOT private property{{/if}}</li>
 </template>

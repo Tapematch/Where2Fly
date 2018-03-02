@@ -24,8 +24,12 @@ Template.newplaceinfo.events({
         const title = target.title.value;
         const lat = target.lat.value;
         const lng = target.lng.value;
+        const flightLight = parseInt(target.flightLight.value);
+        const privateProperty = target.privateProperty.checked;
 
         Places.insert({
+            privateProperty,
+            flightLight,
             title,
             lat,
             lng

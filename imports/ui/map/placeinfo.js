@@ -13,12 +13,17 @@ Template.placeinfo.events({
         const title = target.title.value;
         const lat = target.lat.value;
         const lng = target.lng.value;
+        const flightLight = parseInt(target.flightLight.value);
+        const privateProperty = target.privateProperty.checked;
 
         Places.update(this.place._id, {
             $set: {
+                privateProperty,
+                flightLight,
                 title,
                 lat,
-                lng },
+                lng
+            },
         });
     },
     'click .delete'() {

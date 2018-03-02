@@ -7,3 +7,18 @@ Template.placelist.helpers({
         return Places.find({});
     }
 });
+
+Template.place.helpers({
+    getColor: function(flightLight) {
+        switch(flightLight) {
+            case 1:
+                return "red";
+            case 2:
+                return "orange";
+            case 3:
+                return "green";
+            default:
+                return "black";
+        }
+    }
+});

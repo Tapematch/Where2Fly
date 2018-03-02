@@ -6,4 +6,43 @@
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <h3>Filter</h3>
+    <table>
+        <tr>
+            <td>
+                <fieldset>
+                    <ul>
+                        <li>
+                            <label class="flightLight3">
+                                <input type="checkbox">
+                                green
+                            </label>
+                        </li>
+                        <li>
+                            <label class="flightLight2">
+                                <input type="checkbox">
+                                yellow
+                            </label>
+                        </li>
+                        <li>
+                            <label class="flightLight1">
+                                <input type="checkbox">
+                                red
+                            </label>
+                        </li>
+                    </ul>
+                </fieldset>
+            </td>
+            <td>
+                <fieldset class="privatePropertyFilter">
+                    <input type="radio" id="privateProperty" name="privateProperty" value="true">
+                    <label for="privateProperty"> only private property</label><br>
+                    <input type="radio" id="nonPrivateProperty" name="privateProperty" value="false">
+                    <label for="nonPrivateProperty"> only nonprivate property</label><br>
+                    <input type="radio" id="both" name="privateProperty" value="both" checked="checked">
+                    <label for="both"> both</label>
+                </fieldset>
+            </td>
+        </tr>
+    </table>
 </template>

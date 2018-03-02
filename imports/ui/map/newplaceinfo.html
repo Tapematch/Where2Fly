@@ -7,6 +7,9 @@
         <input type="text" name="lat" value={{searchLat}} /><br>
         Longitude:<br>
         <input type="text" name="lng" value={{searchLng}} /><br>
+        Flight Light:<br>
+        <input type="number" name="flightLight" step="1" min="1" max="3" value={{place.flightLight}}><br>
+        Private Property: <input type="checkbox" name="privateProperty" checked="{{place.privateProperty}}" class="toggle-privateProperty" ><br>
         <input type="submit" value="Save New Place" />
     </form>
 </template>
