@@ -19,15 +19,21 @@ Template.newplaceinfo.events({
         // Prevent default browser form submit
         event.preventDefault();
 
+        if(event.keyCode == 13) {
+            return false;
+        }
+
         // Get value from form element
         const target = event.target;
         const title = target.title.value;
-        const lat = target.lat.value;
-        const lng = target.lng.value;
+        const lat = searchPosition.get("searchLat");
+        const lng = searchPosition.get("searchLng");
         const flightLight = parseInt(target.flightLight.value);
         const privateProperty = target.privateProperty.checked;
 
         Places.insert({
+            owner: Meteor.userId(),
+            username: Meteor.user().username,
             privateProperty,
             flightLight,
             title,

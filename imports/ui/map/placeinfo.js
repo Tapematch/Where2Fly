@@ -7,12 +7,15 @@ Template.placeinfo.events({
         // Prevent default browser form submit
         event.preventDefault();
 
+        if(event.keyCode == 13) {
+            console.log("prevented");
+            return false;
+        }
+
         console.log(this.place._id);
         // Get value from form element
         const target = event.target;
         const title = target.title.value;
-        const lat = target.lat.value;
-        const lng = target.lng.value;
         const flightLight = parseInt(target.flightLight.value);
         const privateProperty = target.privateProperty.checked;
 
@@ -20,9 +23,7 @@ Template.placeinfo.events({
             $set: {
                 privateProperty,
                 flightLight,
-                title,
-                lat,
-                lng
+                title
             },
         });
     },

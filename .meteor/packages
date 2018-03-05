@@ -26,3 +26,5 @@ dburles:google-maps
 reactive-dict
 kadira:blaze-layout
 kadira:flow-router
+accounts-ui
+accounts-password
