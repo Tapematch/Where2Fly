@@ -15,7 +15,12 @@
     <header>
         {{> Template.dynamic template=header}}
     </header>
-    {{> Template.dynamic template=body}}
+    <heroimage>
+        {{> Template.dynamic template=heroimage}}
+    </heroimage>
+    <div class="container">
+        {{> Template.dynamic template=body}}
+    </div>
     <footer>
         {{> Template.dynamic template=footer}}
     </footer>

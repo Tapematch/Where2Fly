@@ -1,0 +1,47 @@
+<template name="detail">
+    <h1>{{displayValues.title}}</h1>
+
+    <div class="place-info-icons">
+
+        <div class="col-sm-6 col-md-3">
+            <div class="iconbox">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>
+                {{displayValues.username}}<br>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="iconbox">
+                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><br>
+                {{displayValues.lat}}:<br>{{displayValues.lng}}<br>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="iconbox">
+                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><br>
+                {{displayValues.flightLight}}<br>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="iconbox">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span><br>
+                {{displayValues.privateProperty}}<br>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-actions">
+        {{#if currentUser}}
+        <input type="submit" value="Update Place"/>
+        {{else}}
+        <p>Please log in to update this Place</p>
+        {{/if}}
+
+        {{#if currentUser}}
+        <button class="delete">Delete Place</button>
+        {{/if}}
+
+    </div>
+</template>

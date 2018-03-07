@@ -1,1 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800|Ubuntu');
+
+$brand-primary: #006F76;
+$brand-secondary: #023A3E;
+
+$font-family-sans-serif: 'Nunito';
+
 @import 'html/html.scss';
+@import 'header/navbar.scss';
+@import 'detail/detail.scss';
+@import 'footer/footer.scss';

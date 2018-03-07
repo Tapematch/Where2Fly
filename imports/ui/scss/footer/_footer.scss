@@ -1,0 +1,21 @@
+footer {
+  background-color: $brand-primary;
+  color: #fff;
+
+  .container {
+    padding: 30px 0;
+    display: block;
+    position: relative;
+  }
+
+}
+
+.credits {
+
+  display: block;
+  position: relative;
+  background-color: $brand-secondary;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+}

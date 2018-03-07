@@ -1,0 +1,25 @@
+.navbar {
+  display: block;
+  position: relative;
+  margin-bottom: 0;
+  border-bottom: 4px solid $brand-primary;
+
+  .logo {
+    display: block;
+    position: relative;
+    padding: 5px 0;
+    height: 60px;
+  }
+
+  li {
+    a {
+      line-height: 30px;
+      color: $brand-secondary !important;
+    }
+
+    #login-buttons {
+      line-height: 60px;
+    }
+  }
+
+}
