@@ -31,7 +31,7 @@ FlowRouter.route('/profile', {
     },
 });
 
-FlowRouter.route('/place/:_id', {
+FlowRouter.route('/place/:pid', {
     name: 'details',
     action() {
         console.log("detail");

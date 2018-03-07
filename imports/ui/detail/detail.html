@@ -1,4 +1,12 @@
 <template name="detail">
+    <heroimage>
+        <div class="map-container-detail">
+            {{> googleMap name="detailMap" options=detailMapOptions}}
+        </div>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </heroimage>
     <div class="container">
         <h1>{{displayValues.title}}</h1>
 

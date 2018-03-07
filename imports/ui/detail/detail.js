@@ -1,24 +1,69 @@
-import {Template} from 'meteor/templating';
-import {Places} from '../../api/places.js';
+import { Template } from 'meteor/templating';
+import { Blaze } from 'meteor/blaze'
+import { Places } from '../../api/places.js';
+import '../map/placeinfo.js';
 import './detail.html';
 
+
+Template.detail.onCreated(function () {
+    var pid = FlowRouter.getParam("pid");
+
+    place = Places.findOne({_id: pid});
+
+    // We can use the `ready` callback to interact with the map API once the map is ready.
+    GoogleMaps.ready('detailMap', function (map) {
+        globalMap = map;
+        var bounds = new google.maps.LatLngBounds();
+        var marker = placeMarkerOnMap(place, map);
+        bounds.extend(marker.getPosition());
+        map.instance.fitBounds(bounds);
+    });
+});
+
+function placeMarkerOnMap(place, map) {
+    var myLatlng = new google.maps.LatLng(place.lat, place.lng);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map.instance,
+        //animation: google.maps.Animation.DROP,
+        title: place.title
+    });
+    marker.id = place._id;
+    return marker;
+}
 
 Template.detail.helpers({
 
     displayID() {
 
-        pid = FlowRouter.getQueryParam("pid");
+        var pid = FlowRouter.getParam("pid");
         console.log("PID von details.js: " + pid);
         return pid;
     },
 
     displayValues() {
 
-        pid = FlowRouter.getQueryParam("pid");
+        var pid = FlowRouter.getParam("pid");
         place = Places.findOne({_id: pid});
         return place;
 
+    },
+
+    detailMapOptions: function () {
+        // Make sure the maps API has loaded
+        if (GoogleMaps.loaded()) {
+            // Map initialization options
+            return {
+                center: new google.maps.LatLng(0, 0),
+                zoom: 1,
+                maxZoom: 15
+            };
+        }
     }
 
 
+});
+
+Template.detail.onRendered(function () {
+    GoogleMaps.load({key: 'AIzaSyAfg1bHhw_1xJzHVBcHoVy7TKbGizKQCUM'});
 });
