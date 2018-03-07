@@ -31,7 +31,7 @@ Template.newplaceinfo.events({
         const flightLight = parseInt(target.flightLight.value);
         const privateProperty = target.privateProperty.checked;
 
-        Places.insert({
+        var id = Places.insert({
             owner: Meteor.userId(),
             username: Meteor.user().username,
             privateProperty,
@@ -42,5 +42,7 @@ Template.newplaceinfo.events({
         });
         searchmarker.setMap(null);
         searchmarker = null;
+
+        FlowRouter.go('/place/' + id);
     },
 });
