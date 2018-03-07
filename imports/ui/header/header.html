@@ -1,4 +1,7 @@
 <template name="header">
     <h1>Where2Fly</h1><div class="slogan">Find perfect droneplaces</div>
     {{> loginButtons}}
+    {{#if currentUser}}
+    <a href="/profile">My Profile</a>
+    {{/if}}
 </template>
