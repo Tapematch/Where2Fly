@@ -1,13 +1,17 @@
 <template name="placelist">
-    <h2>Places</h2>
-    <div>
-        <ul>
-            {{#each places}}
+    <div class="container">
+        <h2>Places</h2>
+        <div>
+            <ul>
+                {{#each places}}
                 {{> place}}
-            {{/each}}
-        </ul>
+                {{/each}}
+            </ul>
+        </div>
     </div>
 </template>
 <template name="place">
-    <li style="color:{{getColor flightLight}}">{{title}}: {{lat}}, {{lng}}, {{#if privateProperty}}is private property{{else}}is NOT private property{{/if}}</li>
+    <li style="color:{{getColor flightLight}}">{{title}}: {{_id}}, {{lat}}, {{lng}}, {{#if privateProperty}}is private
+        property{{else}}is NOT private property{{/if}}
+    </li>
 </template>
