@@ -156,12 +156,14 @@ Template.map.events({
 });
 
 function placeMarkerOnMap(place, map) {
+    var image = '/img/marker-icon.png';
     var myLatlng = new google.maps.LatLng(place.lat, place.lng);
     var marker = new google.maps.Marker({
         position: myLatlng,
         map: map.instance,
         //animation: google.maps.Animation.DROP,
-        title: place.title
+        title: place.title,
+        icon: image
     });
     marker.id = place._id;
     visiblemarkers.push(marker);
@@ -225,7 +227,7 @@ function setSearchMarker(map, location, name) {
 
     var symbolThree = {
         path: 'M -6,-6 6,6 M 6,-6 -6,6',
-        strokeColor: '#292',
+        strokeColor: '#006F76',
         strokeWeight: 3
     };
     searchmarker = new google.maps.Marker({

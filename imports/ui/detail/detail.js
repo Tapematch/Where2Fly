@@ -21,12 +21,14 @@ Template.detail.onCreated(function () {
 });
 
 function placeMarkerOnMap(place, map) {
+    var image = '/img/marker-icon.png';
     var myLatlng = new google.maps.LatLng(place.lat, place.lng);
     var marker = new google.maps.Marker({
         position: myLatlng,
         map: map.instance,
         //animation: google.maps.Animation.DROP,
-        title: place.title
+        title: place.title,
+        icon: image
     });
     marker.id = place._id;
     return marker;
