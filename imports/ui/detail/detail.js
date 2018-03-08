@@ -49,10 +49,34 @@ Template.detail.helpers({
     displayValues(){
         return getPlace();
     },
-    flightLight() {
-        var pid = FlowRouter.getParam("pid");
-        place = Places.findOne({_id: pid});
-        return place.flightLight;
+    getColor: function (flightLight) {
+
+        switch (flightLight) {
+            case 1:
+                return "red";
+            case 2:
+                return "orange";
+            case 3:
+                return "green";
+            default:
+                return "black";
+        }
+    },
+    getPrivateProperty: function (privateProperty) {
+        switch (privateProperty) {
+            case true:
+                return "lock";
+            case false:
+                return "unlock";
+        }
+    },
+    getPrivatePropertyString: function (privateProperty) {
+        switch (privateProperty) {
+            case true:
+                return "Private property";
+            case false:
+                return "Public property";
+        }
     },
     detailMapOptions: function () {
         // Make sure the maps API has loaded

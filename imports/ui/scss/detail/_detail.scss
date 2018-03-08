@@ -1,8 +1,13 @@
 .place-info-icons {
 
   color: $brand-secondary;
-  .glyphicon {
-    font-size: 300%;
+
+  a {
+    color: $brand-secondary;
+    text-decoration: none !important;
+    &:hover {
+      color: $brand-primary;
+    }
   }
 
   .iconbox {
@@ -17,6 +22,32 @@
     width: 200px;
     height: 200px;
 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 20%;
+
+    &.red {
+      background-image: url("/img/fl-red.svg");
+      border: 5px solid $brand-danger;
+    }
+
+    &.orange {
+      background-image: url("/img/fl-orange.svg");
+      border: 5px solid $brand-warning;
+    }
+
+    &.green {
+      background-image: url("/img/fl-green.svg");
+      border: 5px solid #9DBF15;
+    }
+
+    &.unlock {
+      border: 5px solid #9DBF15;
+    }
+
+    &.lock {
+      border: 5px solid $brand-danger;
+    }
   }
 
   text-align: center;
@@ -29,8 +60,4 @@
 .map-container-detail {
   width: 100%;
   height: 300px;
-}
-
-div#myModal.modal.fade.in {
-  display: block !important;
 }

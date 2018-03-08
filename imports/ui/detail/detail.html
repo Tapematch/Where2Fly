@@ -14,29 +14,29 @@
 
             <div class="col-sm-6 col-md-3">
                 <div class="iconbox">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>
-                    {{displayValues.username}}<br>
+                    <a href="/profile?userId={{displayValues.owner}}"><i class="fa fa-5x fa-user"
+                                                                         aria-hidden="true"></i><br>
+                        {{displayValues.username}}</a>
                 </div>
             </div>
 
             <div class="col-sm-6 col-md-3">
                 <div class="iconbox">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><br>
+                    <i class="fa fa-4x fa-map-marker" aria-hidden="true"></i><br>
                     {{displayValues.lat}}:<br>{{displayValues.lng}}<br>
                 </div>
             </div>
 
             <div class="col-sm-6 col-md-3">
-                <div class="iconbox">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><br>
-                    {{flightLight}}<br>
+                <div class="iconbox flightlight {{getColor displayValues.flightLight}}">
+                    <span class="icon"></span><br>
                 </div>
             </div>
 
             <div class="col-sm-6 col-md-3">
-                <div class="iconbox">
-                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span><br>
-                    {{displayValues.privateProperty}}<br>
+                <div class="iconbox {{getPrivateProperty displayValues.privateProperty}}">
+                    <i class="fa fa-5x fa-{{getPrivateProperty displayValues.privateProperty}}"></i><br>
+                    {{getPrivatePropertyString displayValues.privateProperty}}
                 </div>
             </div>
         </div>
@@ -74,19 +74,24 @@
                 </div>
                 <div class="modal-body">
                     <form class="place-form-edit save">
-                        Title:<br>
-                        <input type="text" name="title" value={{displayValues.title}}><br>
+                        <label for="title">Title</label>
+                        <input class="form-control" placeholder="Title" type="text" name="title"
+                               value={{displayValues.title}}><br>
                         Flight Light:<br>
                         <input type="number" name="flightLight" step="1" min="1" max="3" value={{displayValues.flightLight}}><br>
-                        Private Property: <input type="checkbox" name="privateProperty"
-                                                 checked="{{displayValues.privateProperty}}"
-                                                 class="toggle-privateProperty"><br>
 
-                        <button type="submit" class="btn btn-primary save">Save Place</button>
+                        <label for="private-property">Private Property</label> <input type="checkbox"
+                                                                                      name="privateProperty"
+                                                                                      checked="{{displayValues.privateProperty}}"
+                                                                                      class="form-control toggle-privateProperty">
+
+                        <input type="checkbox" checked data-toggle="toggle">
+
                     </form>
 
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary save">Save Place</button>
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
