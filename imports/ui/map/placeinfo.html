@@ -1,25 +1,16 @@
 <template name="placeinfo">
-    <h4 style="color: red">Place Info</h4>
-    <form class="place-form">
-        Owner:<br>
-        {{place.username}}<br>
-        Title:<br>
-        <input type="text" name="title" value={{place.title}} /><br>
-        Latitude:<br>
-        {{place.lat}}<br>
-        Longitude:<br>
-        {{place.lng}}<br>
+    <div class="placeinfo">
+        <h4>{{place.title}}</h4>
+
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{place.username}}<br>
+
         Flight Light:<br>
-        <input type="number" name="flightLight" step="1" min="1" max="3" value={{place.flightLight}}><br>
-        Private Property: <input type="checkbox" name="privateProperty" checked="{{place.privateProperty}}" class="toggle-privateProperty" ><br>
-        {{#if currentUser}}
-        <input type="submit" value="Update Place" />
-        {{else}}
-        <p>Please log in to update this Place</p>
-        {{/if}}
-    </form>
-    {{#if currentUser}}
-    <button class="delete">Delete Place</button>
-    {{/if}}
-    <a href="/place/{{place._id}}" class="details">Detailseite</a>
+        {{place.flightLight}}
+
+        Private Property: <input type="checkbox" name="privateProperty" checked="{{place.privateProperty}}"
+                                 class="toggle-privateProperty"><br>
+
+        <a href="/place/{{place._id}}" class="btn btn-primary details"><span class="glyphicon glyphicon-info-sign"
+                                                                             aria-hidden="true"></span> Details</a>
+    </div>
 </template>
