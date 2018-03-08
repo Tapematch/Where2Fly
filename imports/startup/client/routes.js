@@ -5,7 +5,7 @@ import '../../ui/footer/footer.js';
 import '../../ui/detail/detail.js';
 import '../../ui/map/map.js';
 import '../../ui/placelist/placelist.js';
-import '../../ui/profile/profile.js';
+import '../../ui/profile/myprofile.js';
 
 FlowRouter.route('/', {
     name: 'home',
@@ -27,7 +27,7 @@ FlowRouter.route('/profile', {
     name: 'profile',
     action() {
         console.log("profile");
-        BlazeLayout.render('body', { header: 'header', body: 'profile', footer: 'footer' });
+        BlazeLayout.render('body', { header: 'header', body: 'myprofile', footer: 'footer' });
     },
 });
 

@@ -12,7 +12,6 @@ Template.detail.onCreated(function () {
 
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('detailMap', function (map) {
-        globalMap = map;
         var bounds = new google.maps.LatLngBounds();
         var marker = placeMarkerOnMap(place, map);
         bounds.extend(marker.getPosition());
