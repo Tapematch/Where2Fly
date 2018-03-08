@@ -50,6 +50,15 @@ Template.detail.helpers({
 
     },
 
+
+    flightLight() {
+
+        var pid = FlowRouter.getParam("pid");
+        place = Places.findOne({_id: pid});
+        return place.flightLight;
+
+    },
+
     detailMapOptions: function () {
         // Make sure the maps API has loaded
         if (GoogleMaps.loaded()) {
@@ -63,6 +72,36 @@ Template.detail.helpers({
     }
 
 
+});
+
+Template.detail.events({
+
+    'click .delete'() {
+        var pid = FlowRouter.getParam("pid");
+        Places.remove(pid);
+
+        FlowRouter.go('/');
+    },
+
+    'submit .save'(event) {
+        var pid = FlowRouter.getParam("pid");
+
+        event.preventDefault();
+        var title = event.target.title.value;
+        var flightLight = parseInt(event.target.flightLight.value);
+        var privateProperty = event.target.privateProperty.checked;
+
+        Places.update(pid, {
+            $set: {
+                title,
+                flightLight,
+                privateProperty
+            },
+        });
+
+        // Ersetzen durch Modal einfach schließen
+        location.reload();
+    },
 });
 
 Template.detail.onRendered(function () {

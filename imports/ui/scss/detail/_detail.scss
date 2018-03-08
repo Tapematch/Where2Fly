@@ -22,7 +22,15 @@
   text-align: center;
 }
 
+.user-actions {
+  float: right;
+}
+
 .map-container-detail {
   width: 100%;
   height: 300px;
+}
+
+div#myModal.modal.fade.in {
+  display: block !important;
 }
