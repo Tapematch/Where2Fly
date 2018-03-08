@@ -33,32 +33,27 @@ function placeMarkerOnMap(place, map) {
     return marker;
 }
 
-Template.detail.helpers({
+function getPlace() {
+    var pid = FlowRouter.getParam("pid");
+    place = Places.findOne({_id: pid});
+    return place;
+}
 
+Template.detail.helpers({
     displayID() {
 
         var pid = FlowRouter.getParam("pid");
         console.log("PID von details.js: " + pid);
         return pid;
     },
-
-    displayValues() {
-
-        var pid = FlowRouter.getParam("pid");
-        place = Places.findOne({_id: pid});
-        return place;
-
+    displayValues(){
+        return getPlace();
     },
-
-
     flightLight() {
-
         var pid = FlowRouter.getParam("pid");
         place = Places.findOne({_id: pid});
         return place.flightLight;
-
     },
-
     detailMapOptions: function () {
         // Make sure the maps API has loaded
         if (GoogleMaps.loaded()) {
@@ -70,11 +65,13 @@ Template.detail.helpers({
             };
         }
     }
-
-
 });
 
 Template.detail.events({
+
+    'click .edit'() {
+        Modal.show('editPlaceModal');
+    },
 
     'click .delete'() {
         var pid = FlowRouter.getParam("pid");
@@ -82,11 +79,24 @@ Template.detail.events({
 
         FlowRouter.go('/');
     },
+});
 
+Template.detail.onRendered(function () {
+    GoogleMaps.load({key: 'AIzaSyAfg1bHhw_1xJzHVBcHoVy7TKbGizKQCUM'});
+});
+
+
+Template.editPlaceModal.helpers({
+    displayValues(){
+        return getPlace();
+    },
+});
+
+Template.editPlaceModal.events({
     'submit .save'(event) {
-        var pid = FlowRouter.getParam("pid");
-
         event.preventDefault();
+
+        var pid = FlowRouter.getParam("pid");
         var title = event.target.title.value;
         var flightLight = parseInt(event.target.flightLight.value);
         var privateProperty = event.target.privateProperty.checked;
@@ -99,11 +109,6 @@ Template.detail.events({
             },
         });
 
-        // Ersetzen durch Modal einfach schließen
-        location.reload();
+        Modal.hide('editPlaceModal');
     },
-});
-
-Template.detail.onRendered(function () {
-    GoogleMaps.load({key: 'AIzaSyAfg1bHhw_1xJzHVBcHoVy7TKbGizKQCUM'});
 });
