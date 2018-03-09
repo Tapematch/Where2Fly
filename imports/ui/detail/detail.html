@@ -72,28 +72,39 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="editPlaceModalLabel">{{displayValues.title}}</h4>
                 </div>
-                <div class="modal-body">
                     <form class="place-form-edit save">
+                        <div class="modal-body">
                         <label for="title">Title</label>
                         <input class="form-control" placeholder="Title" type="text" name="title"
                                value={{displayValues.title}}><br>
-                        Flight Light:<br>
-                        <input type="number" name="flightLight" step="1" min="1" max="3" value={{displayValues.flightLight}}><br>
 
-                        <label for="private-property">Private Property</label> <input type="checkbox"
-                                                                                      name="privateProperty"
-                                                                                      checked="{{displayValues.privateProperty}}"
-                                                                                      class="form-control toggle-privateProperty">
+                            <div class="row">
+                                <div class="col-sm-6">
 
-                        <input type="checkbox" checked data-toggle="toggle">
+                                    <input type="number" name="flightLight" step="1" min="1" max="3"
+                                           value={{displayValues.flightLight}}><br>
 
-                    </form>
+
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <!-- Rounded switch -->
+                                    <label for="property">Is Private Property?</label><br>
+                                    <label class="switch">
+                                        <input type="checkbox" name="privateProperty"
+                                               checked="{{displayValues.privateProperty}}"
+                                               class="form-control toggle-privateProperty">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary save">Save Place</button>
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
                 </div>
+                    </form>
             </div>
         </div>
     </div>
