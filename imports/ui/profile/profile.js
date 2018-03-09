@@ -1,17 +1,17 @@
 import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze'
-import { Tracker } from 'meteor/tracker'
-import { Places } from "../../api/places.js";
-import './myprofile.html';
+import { Places } from "../../api/places.js"
+import './profile.html';
 import '../map/placeinfo.js';
 
 var visiblemarkers = [];
 
-Template.myprofile.onCreated(function () {
-    var userId = Meteor.user()._id;
-    console.log(userId);
+Template.profile.onCreated(function () {
+    var userId = FlowRouter.getQueryParam("userId");
+    if (typeof userId == 'undefined') {
+        userId = Meteor.userId();
+    }
     var places = Places.find({"owner": userId});
-    console.log(places.count());
 
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('myprofileMap', function (map) {
@@ -72,11 +72,11 @@ function deleteMarker(placeId) {
     });
 }
 
-Template.myprofile.onRendered(function () {
+Template.profile.onRendered(function () {
     GoogleMaps.load({key: 'AIzaSyAfg1bHhw_1xJzHVBcHoVy7TKbGizKQCUM'});
 });
 
-Template.myprofile.helpers({
+Template.profile.helpers({
     myprofileMapOptions: function () {
         // Make sure the maps API has loaded
         if (GoogleMaps.loaded()) {
@@ -87,5 +87,56 @@ Template.myprofile.helpers({
                 maxZoom: 15
             };
         }
+    },
+    isCurrentUser() {
+        var userId = FlowRouter.getQueryParam("userId");
+        return (typeof userId == 'undefined' || userId == Meteor.userId());
+    },
+    user() {
+        var userId = FlowRouter.getQueryParam("userId");
+        console.log(userId);
+        if (typeof userId == 'undefined' || userId == Meteor.userId()) {
+            return Meteor.user();
+        } else {
+            return Meteor.users.findOne(userId);
+        }
     }
+});
+
+Template.profile.events({
+
+    'click .edit'() {
+        Modal.show('editProfileModal');
+    },
+});
+
+
+Template.editProfileModal.events({
+    'submit .save'(event) {
+        event.preventDefault();
+
+        var phone = event.target.phone.value;
+        var fullname = event.target.fullname.value;
+        var commercial = event.target.commercial.checked;
+        var uavs = event.target.uavs.value;
+        var website = event.target.website.value;
+        var facebook = event.target.facebook.value;
+        var twitter = event.target.twitter.value;
+        var instagram = event.target.instagram.value;
+
+        Meteor.users.update({_id: Meteor.userId()}, {
+            $set: {
+                'profile.phone': phone,
+                'profile.fullname': fullname,
+                'profile.commercial': commercial,
+                'profile.uavs': uavs,
+                'profile.website': website,
+                'profile.facebook': facebook,
+                'profile.twitter': twitter,
+                'profile.instagram': instagram
+            }
+        });
+
+        Modal.hide('editProfileModal');
+    },
 });

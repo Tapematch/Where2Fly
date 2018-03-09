@@ -1,3 +1,3 @@
 import 'bootstrap-sass';
-import '../imports/startup/accounts-config.js';
 import '/imports/startup/client/routes.js';
+import '/imports/startup/client/accounts.js';

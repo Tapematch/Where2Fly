@@ -29,5 +29,4 @@ kadira:flow-router
 accounts-ui
 accounts-password
 peppelg:bootstrap-3-modal
-fortawesome:fontawesome
-jiku:bootstrap-toggle
+useraccounts:bootstrap
