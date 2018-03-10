@@ -1,17 +1,30 @@
 import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze'
+import {Tracker} from 'meteor/tracker'
 import { Places } from "../../api/places.js"
 import './profile.html';
 import '../map/placeinfo.js';
+import {Photos} from "../../api/photos";
 
 var visiblemarkers = [];
 
 Template.profile.onCreated(function () {
-    var userId = FlowRouter.getQueryParam("userId");
-    if (typeof userId == 'undefined') {
-        userId = Meteor.userId();
-    }
-    var places = Places.find({"owner": userId});
+    var places;
+    var likedPlaces;
+    Tracker.autorun(() => {
+        var userId = FlowRouter.getQueryParam("userId");
+        var user;
+        if (typeof userId == 'undefined') {
+            userId = Meteor.userId();
+            user = Meteor.user();
+        } else {
+            user = Meteor.users.findOne(userId);
+        }
+        console.log(userId);
+        places = Places.find({"owner": userId});
+        var likes = user.profile.likes;
+        likedPlaces = Places.find({_id: {$in: likes}});
+    });
 
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('myprofileMap', function (map) {
@@ -20,7 +33,17 @@ Template.profile.onCreated(function () {
 
         places.observe({
             added(place) {
-                var marker = placeMarkerOnMap(place, map);
+                var marker = placeMarkerOnMap(false, place, map);
+                bounds.extend(marker.getPosition());
+            },
+            removed(oldPlace) {
+                deleteMarker(oldPlace._id);
+            }
+        });
+
+        likedPlaces.observe({
+            added(place) {
+                var marker = placeMarkerOnMap(true, place, map);
                 bounds.extend(marker.getPosition());
             },
             removed(oldPlace) {
@@ -32,8 +55,13 @@ Template.profile.onCreated(function () {
     });
 });
 
-function placeMarkerOnMap(place, map) {
-    var image = '/img/marker-icon.png';
+function placeMarkerOnMap(like, place, map) {
+    var image;
+    if(like){
+        image = '/img/marker-icon-like.png';
+    } else {
+        image = '/img/marker-icon.png';
+    }
     var myLatlng = new google.maps.LatLng(place.lat, place.lng);
     var marker = new google.maps.Marker({
         position: myLatlng,
@@ -72,10 +100,6 @@ function deleteMarker(placeId) {
     });
 }
 
-Template.profile.onRendered(function () {
-    GoogleMaps.load({key: 'AIzaSyAfg1bHhw_1xJzHVBcHoVy7TKbGizKQCUM'});
-});
-
 Template.profile.helpers({
     myprofileMapOptions: function () {
         // Make sure the maps API has loaded
@@ -94,12 +118,18 @@ Template.profile.helpers({
     },
     user() {
         var userId = FlowRouter.getQueryParam("userId");
-        console.log(userId);
         if (typeof userId == 'undefined' || userId == Meteor.userId()) {
             return Meteor.user();
         } else {
             return Meteor.users.findOne(userId);
         }
+    },
+    photos() {
+        var userId = FlowRouter.getQueryParam("userId");
+        if (typeof userId == 'undefined') {
+            userId = Meteor.userId();
+        }
+        return Photos.find({"owner": userId}, {sort: {createdAt: -1}});
     }
 });
 

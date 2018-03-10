@@ -38,7 +38,8 @@ Template.newplaceinfo.events({
             flightLight,
             title,
             lat,
-            lng
+            lng,
+            createdAt: new Date(), // current time
         });
         searchmarker.setMap(null);
         searchmarker = null;

@@ -5,7 +5,7 @@ import '../../ui/login/login.js';
 import '../../ui/footer/footer.js';
 import '../../ui/detail/detail.js';
 import '../../ui/map/map.js';
-import '../../ui/placelist/placelist.js';
+import '../../ui/feed/feed.js';
 import '../../ui/profile/profile.js';
 
 FlowRouter.route('/', {
@@ -33,11 +33,11 @@ FlowRouter.route('/logout', {
     },
 });
 
-FlowRouter.route('/places', {
-    name: 'placelist',
+FlowRouter.route('/feed', {
+    name: 'feed',
     action() {
         console.log("placelist");
-        BlazeLayout.render('body', { header: 'header', body: 'placelist', footer: 'footer' });
+        BlazeLayout.render('body', { header: 'header', body: 'feed', footer: 'footer' });
     },
 });
 
@@ -45,6 +45,7 @@ FlowRouter.route('/profile', {
     name: 'profile',
     action() {
         console.log("profile");
+        BlazeLayout.reset();
         BlazeLayout.render('body', { header: 'header', body: 'profile', footer: 'footer' });
     },
 });

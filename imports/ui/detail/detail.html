@@ -40,24 +40,42 @@
                 </div>
             </div>
         </div>
-
-        <div class="user-actions">
-            {{#if currentUser}}
-
-            <button class="btn btn-primary edit" type="button"><span
-                    class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Update Place
-            </button>
-            {{else}}
-            <p>Please log in to update this Place</p>
-            {{/if}}
-
-            {{#if currentUser}}
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger delete"><span class="glyphicon glyphicon-remove"
-                                                                      aria-hidden="true"></span> Delete Place
-            </button>
-            {{/if}}
-
+        <div class="row">
+            <div class="gallery">
+                {{#each photos}}
+                    {{> photo}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="user-actions">
+                {{#if currentUser}}
+                    {{#unless isOwnPlace displayValues.owner}}
+                        {{#if liked}}
+                            <button class="btn btn-warning unlike" type="button"><i class="fa fa-thumbs-down"
+                                                                                    aria-hidden="true"></i> Unlike Place
+                            </button>
+                        {{else}}
+                            <button class="btn btn-primary like" type="button"><i class="fa fa-thumbs-up"
+                                                                                  aria-hidden="true"></i> Like Place
+                            </button>
+                        {{/if}}
+                    {{/unless}}
+                    <button class="btn btn-primary upload-photo" type="button"><i class="fa fa-camera"
+                                                                                  aria-hidden="true"></i> Upload Photo
+                    </button>
+                    <button class="btn btn-primary edit" type="button"><span
+                            class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Update Place
+                    </button>
+                    {{#if isOwnPlace displayValues.owner}}
+                        <button type="button" class="btn btn-danger delete"><span class="glyphicon glyphicon-remove"
+                                                                                  aria-hidden="true"></span> Delete Place
+                        </button>
+                    {{/if}}
+                {{else}}
+                    <p>Please log in to update this Place</p>
+                {{/if}}
+            </div>
         </div>
     </div>
 
@@ -72,39 +90,94 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="editPlaceModalLabel">{{displayValues.title}}</h4>
                 </div>
-                    <form class="place-form-edit save">
-                        <div class="modal-body">
+                <form class="place-form-edit save">
+                    <div class="modal-body">
                         <label for="title">Title</label>
                         <input class="form-control" placeholder="Title" type="text" name="title"
                                value={{displayValues.title}}><br>
 
-                            <div class="row">
-                                <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
 
-                                    <input type="number" name="flightLight" step="1" min="1" max="3"
-                                           value={{displayValues.flightLight}}><br>
+                                <input type="number" name="flightLight" step="1" min="1" max="3"
+                                       value={{displayValues.flightLight}}><br>
 
 
-                                </div>
-                                <div class="col-sm-6">
-
-                                    <!-- Rounded switch -->
-                                    <label for="property">Is Private Property?</label><br>
-                                    <label class="switch">
-                                        <input type="checkbox" name="privateProperty"
-                                               checked="{{displayValues.privateProperty}}"
-                                               class="form-control toggle-privateProperty">
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
                             </div>
+                            <div class="col-sm-6">
 
+                                <!-- Rounded switch -->
+                                <label for="property">Is Private Property?</label><br>
+                                <label class="switch">
+                                    <input type="checkbox" name="privateProperty"
+                                           checked="{{displayValues.privateProperty}}"
+                                           class="form-control toggle-privateProperty">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary save">Save Place</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="uploadPhotoModal">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="uploadPhotoModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="uploadPhotoModalLabel">Upload Photo</h4>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary save">Save Place</button>
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+
+                <form class="upload-photo save">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#url">URL</a></li>
+                        <li><a data-toggle="tab" href="#imgur">Upload to Imgur</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="url" class="tab-pane fade in active">
+                            <div class="modal-body">
+                                <label for="url">URL</label>
+                                <input class="form-control" placeholder="URL to Photo" type="url" name="url">
+
+                            </div>
+                        </div>
+                        <div id="imgur" class="tab-pane fade in">
+                            <div class="modal-body">
+                                <input name="photo" type="file" size="50" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary save"
+                                data-loading-text="<i class='fa fa-spinner fa-spin '></i> Uploading Photo">Save Photo
+                        </button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="uploadingModal">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="uploadPhotoModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <i class="fa fa-circle-o-notch fa-spin"></i> Uploading...
                 </div>
-                    </form>
             </div>
         </div>
     </div>

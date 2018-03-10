@@ -1,0 +1,30 @@
+<template name="photo">
+    <div class="col-md-3">
+        <div class="thumbnail">
+            <img src="{{url}}" alt="Photo" style="width:100%">
+            <div class="caption">
+                <p>
+                    {{#unless isCurrentPlace place}}
+                        <a href="/place/{{place}}"><i class="fa fa-map-marker" aria-hidden="true"></i> {{getPlaceName
+                                place}}
+                        </a>
+                    {{/unless}}
+                </p>
+                <p>
+                    {{#if isCurrentUser owner}}
+                        <button type="button" class="btn btn-danger delete"><span class="glyphicon glyphicon-remove"
+                                                                                  aria-hidden="true"></span> Delete
+                            Photo
+                        </button>
+                    {{else}}
+                        {{#unless isUserProfile}}
+                            <a href="/profile?userId={{owner}}"><i class="fa fa-user"
+                                                                   aria-hidden="true"></i> {{username}}
+                            </a>
+                        {{/unless}}
+                    {{/if}}
+                </p>
+            </div>
+        </div>
+    </div>
+</template>

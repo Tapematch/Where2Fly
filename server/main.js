@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Places } from '../imports/api/places.js';
+import { Photos } from '../imports/api/photos.js';
 
 Meteor.startup(() => {
     /*
