@@ -297,7 +297,7 @@ function resetFilter() {
         instance.state.set('privateProperty', "both");
         Blaze.remove(filterTemplate);
         filterTemplate = undefined;
-        controlText.innerHTML = 'Open Filter';
+        controlText.innerHTML = TAPi18n.__('openFilter');
     }
 }
 
@@ -325,14 +325,14 @@ function FilterControl(controlDiv, state) {
     controlText.style.lineHeight = '32px';
     controlText.style.paddingLeft = '5px';
     controlText.style.paddingRight = '5px';
-    controlText.innerHTML = 'Open Filter';
+    controlText.innerHTML = TAPi18n.__('openFilter');
     controlUI.appendChild(controlText);
 
     // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener('click', function () {
         if (filterTemplate === undefined) {
             filterTemplate = Blaze.renderWithData(Template.filter, {state}, document.getElementById("filter"));
-            controlText.innerHTML = 'Reset Filter';
+            controlText.innerHTML = TAPi18n.__('resetFilter');
         } else {
             resetFilter();
         }
@@ -352,7 +352,7 @@ function GeolocationControl(controlDiv, map) {
     controlUI.style.margin = '12px 0 0 12px';
     controlUI.style.padding = '0 5px 0 5px';
     controlUI.style.textAlign = 'center';
-    controlUI.title = 'Click to find your location';
+    controlUI.title = TAPi18n.__('clickFindLocation');
     controlDiv.appendChild(controlUI);
 
     // Set CSS for the control interior.

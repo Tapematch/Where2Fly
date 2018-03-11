@@ -1,6 +1,6 @@
 <template name="map">
     <heroimage>
-        <input id="pac-input" class="controls" type="text" placeholder="Search or click on map to create a new place">
+        <input id="pac-input" class="controls" type="text" placeholder={{_ "searchBoxPlaceholder"}}>
         <div class="map-container">
             {{> googleMap name="placesMap" options=placesMapOptions}}
         </div>

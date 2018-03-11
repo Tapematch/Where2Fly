@@ -33,3 +33,5 @@ useraccounts:bootstrap
 fortawesome:fontawesome
 simple:imgur
 email
+tap:i18n
+tap:i18n-ui

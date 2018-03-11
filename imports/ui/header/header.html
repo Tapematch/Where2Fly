@@ -24,13 +24,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/feed">Feed</a></li>
+                    <li><a href="/feed">{{_ "feed"}}</a></li>
                     {{#if currentUser}}
-                        <li><a href="/profile">My Profile</a></li>
-                        <li><a href="/logout">Logout</a></li>
+                        <li><a href="/profile">{{_ "myprofile"}}</a></li>
+                        <li><a href="/logout">{{_ "logout"}}</a></li>
                     {{else}}
-                        <li class="login"><a href="/login">Login/Register</a></li>
+                        <li class="login"><a href="/login">{{_ "login/register"}}</a></li>
                     {{/if}}
+                    <li><a href="#">{{> i18n_dropdown}}</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

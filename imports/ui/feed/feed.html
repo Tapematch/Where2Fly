@@ -1,13 +1,13 @@
 <template name="feed">
     <div class="container">
-        <h2>Latest Photos</h2>
+        <h2>{{_ "latestPhotos"}}</h2>
         <div class="gallery">
             {{#each photos}}
                 {{> photo}}
             {{/each}}
         </div>
         <div class="row"></div>
-        <h2>Latest Places</h2>
+        <h2>{{_ "latestPlaces"}}</h2>
     </div>
     <heroimage>
         <div class="map-container-detail">
