@@ -4,5 +4,14 @@
   "uploadPhoto": "Upload Photo",
   "updatePlace": "Update Place",
   "deletePlace": "Delete Place",
-  "reportPlace": "Report this Place"
+  "reportPlace": "Report this Place",
+  "title": "Title",
+  "isPrivateProperty": "Is private property?",
+  "savePlace": "Save Place",
+  "cancel": "Cancel",
+  "uploadToImgur": "Upload to Imgur",
+  "savePhoto": "Save Photo",
+  "uploading": "Uploading...",
+  "privateProperty": "private property",
+  "publicProperty": "public property"
 }

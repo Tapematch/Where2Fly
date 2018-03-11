@@ -1,19 +1,19 @@
 <template name="newplaceinfo">
-    <h4 style="color: green">New Place</h4>
+    <h4 style="color: green">{{_ "newPlace"}}</h4>
     <form class="place-form">
-        Title:<br>
+        {{_ "title"}}:<br>
         <input type="text" name="title" value={{place.title}} /><br>
-        Latitude:<br>
+        {{_ "latitude"}}:<br>
         {{searchLat}}<br>
-        Longitude:<br>
+        {{_ "longitude"}}:<br>
         {{searchLng}}<br>
-        Flight Light:<br>
+        {{_ "flightLight"}}:<br>
         <input type="number" name="flightLight" step="1" min="1" max="3" value=1><br>
-        Private Property: <input type="checkbox" name="privateProperty" checked="{{place.privateProperty}}" class="toggle-privateProperty" ><br>
+        {{_ "privateProperty"}}: <input type="checkbox" name="privateProperty" checked="{{place.privateProperty}}" class="toggle-privateProperty" ><br>
         {{#if currentUser}}
-        <input type="submit" value="Save New Place" />
+        <input type="submit" value="{{_ "saveNewPlace"}}" />
         {{else}}
-        <p>Please log in to create a new Place</p>
+        <p>{{_ "loginCreatePlace"}}</p>
         {{/if}}
     </form>
 </template>

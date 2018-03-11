@@ -13,8 +13,7 @@
                 <p>
                     {{#if isCurrentUser owner}}
                         <button type="button" class="btn btn-danger delete"><span class="glyphicon glyphicon-remove"
-                                                                                  aria-hidden="true"></span> Delete
-                            Photo
+                                                                                  aria-hidden="true"></span> {{_ "deletePhoto"}}
                         </button>
                     {{else}}
                         {{#unless isUserProfile}}
@@ -23,7 +22,7 @@
                             </a>
                         {{/unless}}
                     {{/if}}
-                    <button type="button" class="btn btn-secondary report" title="Report this photo"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    <button type="button" class="btn btn-secondary report" title="{{_ "reportPhoto"}}"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                     </button>
                 </p>
             </div>

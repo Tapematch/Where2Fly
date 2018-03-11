@@ -113,7 +113,7 @@ Template.map.onCreated(function () {
             setNewMarker(map, location, place.name);
         });
         map.instance.addListener('click', function (event) {
-            setNewMarker(map, event.latLng, "new Place");
+            setNewMarker(map, event.latLng, TAPi18n.__("newPlace"));
         });
 
         var geolocationControlDiv = document.createElement('div');
@@ -313,7 +313,7 @@ function FilterControl(controlDiv, state) {
     controlUI.style.margin = '12px 0 0 12px';
     controlUI.style.padding = '0 5px 0 5px';
     controlUI.style.textAlign = 'center';
-    controlUI.title = 'Click to open filters';
+    controlUI.title = TAPi18n.__("clickOpenFilter");
     controlDiv.appendChild(controlUI);
 
     // Set CSS for the control interior.
@@ -372,7 +372,7 @@ function GeolocationControl(controlDiv, map) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                setNewMarker(map, location, 'new Place');
+                setNewMarker(map, location, TAPi18n.__("newPlace"));
             }, function () {
                 handleLocationError(true);
             });
@@ -383,8 +383,8 @@ function GeolocationControl(controlDiv, map) {
 
         function handleLocationError(browserHasGeolocation) {
             alert(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
+                TAPi18n.__("geolocationFailed"):
+                TAPi18n.__("geolocationNotSupported"));
         }
     });
 

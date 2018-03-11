@@ -5,16 +5,16 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="editPlaceModalLabel">Report this</h4>
+                    <h4 class="modal-title" id="editPlaceModalLabel">{{_ "report"}}</h4>
                 </div>
                 <form id="reportForm" class="place-form-edit save">
                     <div class="modal-body">
-                        <label for="reason">Reason</label>
+                        <label for="reason">{{_ "reason"}}:</label>
                         <textarea class="form-control" name="reason" cols="60" rows="5"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger send">Send Report</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger send">{{_ "sendReport"}}</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">{{_ "cancel"}}</button>
                     </div>
                 </form>
             </div>

@@ -2,5 +2,6 @@
   "feed": "Feed",
   "myprofile": "My Profile",
   "logout": "Logout",
-  "login/register": "Login/Register"
+  "login/register": "Login/Register",
+  "toggleNavigation": "Toggle navigation"
 }

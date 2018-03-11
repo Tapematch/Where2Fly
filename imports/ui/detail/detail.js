@@ -78,9 +78,9 @@ Template.detail.helpers({
     getPrivatePropertyString: function (privateProperty) {
         switch (privateProperty) {
             case true:
-                return "Private property";
+                return TAPi18n.__("privateProperty");
             case false:
-                return "Public property";
+                return TAPi18n.__("publicProperty");
         }
     },
     detailMapOptions: function () {

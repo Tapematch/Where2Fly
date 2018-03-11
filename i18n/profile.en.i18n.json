@@ -1,0 +1,16 @@
+{
+  "profile": "Profile",
+  "user": "User",
+  "username": "Username",
+  "email": "E-Mail",
+  "phone": "Tel.",
+  "name": "Name",
+  "nonCommercial": "noncommercial",
+  "commercial": "commercial",
+  "website": "Website",
+  "editProfile": "Edit profile",
+  "reportProfile": "report this profile",
+  "photos": "Photos",
+  "places": "Places",
+  "saveProfile": "Save profile"
+}

@@ -4,5 +4,14 @@
   "uploadPhoto": "Foto hochladen",
   "updatePlace": "Ort bearbeiten",
   "deletePlace": "Ort löschen",
-  "reportPlace": "Diesen Ort melden"
+  "reportPlace": "Diesen Ort melden",
+  "title": "Titel",
+  "isPrivateProperty": "Privatgelände?",
+  "savePlace": "Ort speichern",
+  "cancel": "Abbrechen",
+  "uploadToImgur": "Imgur hochladen",
+  "savePhoto": "Foto speichern",
+  "uploading": "Lädt hoch...",
+  "privateProperty": "Privatgelände",
+  "publicProperty": "Öffentliches Gelände"
 }

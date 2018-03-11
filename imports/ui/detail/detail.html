@@ -72,8 +72,6 @@
                                                                                   aria-hidden="true"></span> {{_ "deletePlace"}}
                         </button>
                     {{/if}}
-                {{else}}
-                    Please log in to update this Place
                 {{/if}}
                 <button type="button" class="btn btn-secondary report" title={{_ "reportPlace"}}><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                 </button>
@@ -94,7 +92,7 @@
                 </div>
                 <form class="place-form-edit save">
                     <div class="modal-body">
-                        <label for="title">Title</label>
+                        <label for="title">{{_ "title"}}</label>
                         <input class="form-control" placeholder="Title" type="text" name="title"
                                value={{displayValues.title}}><br>
 
@@ -109,7 +107,7 @@
                             <div class="col-sm-6">
 
                                 <!-- Rounded switch -->
-                                <label for="property">Is Private Property?</label><br>
+                                <label for="property">{{_ "isPrivateProperty"}}</label><br>
                                 <label class="switch">
                                     <input type="checkbox" name="privateProperty"
                                            checked="{{displayValues.privateProperty}}"
@@ -121,8 +119,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary save">Save Place</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary save">{{_ "savePlace"}}</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">{{_ "cancel"}}</button>
                     </div>
                 </form>
             </div>
@@ -137,20 +135,20 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="uploadPhotoModalLabel">Upload Photo</h4>
+                    <h4 class="modal-title" id="uploadPhotoModalLabel">{{_ "uploadPhoto"}}</h4>
                 </div>
 
                 <form class="upload-photo save">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#url">URL</a></li>
-                        <li><a data-toggle="tab" href="#imgur">Upload to Imgur</a></li>
+                        <li><a data-toggle="tab" href="#imgur">{{_ "uploadToImgur"}}</a></li>
                     </ul>
 
                     <div class="tab-content">
                         <div id="url" class="tab-pane fade in active">
                             <div class="modal-body">
                                 <label for="url">URL</label>
-                                <input class="form-control" placeholder="URL to Photo" type="url" name="url">
+                                <input class="form-control" placeholder="URL" type="url" name="url">
 
                             </div>
                         </div>
@@ -163,9 +161,9 @@
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary save"
-                                data-loading-text="<i class='fa fa-spinner fa-spin '></i> Uploading Photo">Save Photo
+                                data-loading-text="<i class='fa fa-spinner fa-spin '></i> Uploading Photo">{{_ "savePhoto"}}
                         </button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">{{_ "cancel"}}</button>
                     </div>
                 </form>
             </div>
@@ -178,7 +176,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <i class="fa fa-circle-o-notch fa-spin"></i> Uploading...
+                    <i class="fa fa-circle-o-notch fa-spin"></i> {{_ "uploading"}}
                 </div>
             </div>
         </div>

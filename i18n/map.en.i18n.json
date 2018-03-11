@@ -2,5 +2,21 @@
   "searchBoxPlaceholder": "Search or click on map",
   "clickFindLocation": "find your location",
   "openFilter": "Open filter",
-  "resetFilter": "Reset filter"
+  "clickOpenFilter": "Click to open filter",
+  "resetFilter": "Reset filter",
+  "green": "green",
+  "yellow": "yello",
+  "red": "red",
+  "onlyPrivateProperty": "only private property",
+  "onlyPublicProperty": "only public property",
+  "all": "all",
+  "newPlace": "New place",
+  "geolocationFailed": "Error: The Geolocation service failed.",
+  "geolocationNotSupported": "Error: Your browser doesn't support geolocation.",
+  "latitude": "Latitude",
+  "longitude": "Longitude",
+  "flightLight": "flightlight",
+  "saveNewPlace": "Save new place",
+  "loginCreatePlace": "Please log in to create a new place",
+  "details": "Details"
 }

@@ -2,5 +2,21 @@
   "searchBoxPlaceholder": "Suchen oder auf Karte klicken",
   "clickFindLocation": "Standort finden",
   "openFilter": "Filter öffnen",
-  "resetFilter": "Filter zurücksetzen"
+  "clickOpenFilter": "Klicken um Filter zu öffnen",
+  "resetFilter": "Filter zurücksetzen",
+  "green": "grün",
+  "yellow": "gelb",
+  "red": "rot",
+  "onlyPrivateProperty": "Nur Privatgelände",
+  "onlyPublicProperty": "Nur öffentliches Gelände",
+  "all": "Alle",
+  "newPlace": "Neuer Ort",
+  "geolocationFailed": "Fehler: Standort konnte nicht gefunden werden.",
+  "geolocationNotSupported": "Fehler: Finden des Standorts wird von Ihrem Browser nicht unterstützt.",
+  "latitude": "Breitengrad",
+  "longitude": "Längengrad",
+  "flightLight": "Flug-Ampel",
+  "saveNewPlace": "Neuen Ort speichern",
+  "loginCreatePlace": "Bitte einloggen um einen neuen Ort zu erstellen",
+  "details": "Details"
 }

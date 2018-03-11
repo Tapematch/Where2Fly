@@ -4,13 +4,13 @@
 
         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{place.username}}<br>
 
-        Flight Light:<br>
+        {{_ "flightLight"}}:<br>
         {{place.flightLight}}
 
-        Private Property: <input type="checkbox" name="privateProperty" checked="{{place.privateProperty}}"
+        {{_ "privateProperty"}}: <input type="checkbox" name="privateProperty" checked="{{place.privateProperty}}"
                                  class="toggle-privateProperty"><br>
 
         <a href="/place/{{place._id}}" class="btn btn-primary details"><span class="glyphicon glyphicon-info-sign"
-                                                                             aria-hidden="true"></span> Details</a>
+                                                                             aria-hidden="true"></span> {{_ "details"}}</a>
     </div>
 </template>

@@ -1,0 +1,16 @@
+{
+  "profile": "Profil",
+  "user": "Nutzer",
+  "username": "Benutzername",
+  "email": "E-Mail",
+  "phone": "Phone",
+  "name": "Name",
+  "nonCommercial": "nicht gewerblich",
+  "commercial": "gewerblich",
+  "website": "Webseite",
+  "editProfile": "Profil bearbeiten",
+  "reportProfile": "Dieses Profil melden",
+  "photos": "Fotos",
+  "places": "Orte",
+  "saveProfile": "Profil speichern"
+}
