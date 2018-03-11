@@ -45,6 +45,7 @@ Template.map.onCreated(function () {
         }
         places = Places.find({$and: [privatePropertyFilter, filter]});
         console.log(places.count());
+
         if (globalMap !== undefined) {
             var newPlaceIds = [];
             places.forEach((place) => {
@@ -66,6 +67,7 @@ Template.map.onCreated(function () {
                 placeIds.splice(placeIds.indexOf(placeId), 1);
             });
         }
+
     });
 
     // We can use the `ready` callback to interact with the map API once the map is ready.

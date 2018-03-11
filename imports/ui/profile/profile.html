@@ -18,14 +18,18 @@
             <li>Instagram: {{user.profile.instagram}}</li>
         </ul>
 
-        {{#if isCurrentUser}}
-
         <div class="user-actions">
-            <button class="btn btn-primary edit" type="button"><span
-                    class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
+            {{#if isCurrentUser}}
+
+                <button class="btn btn-primary edit" type="button"><span
+                        class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
+                </button>
+            {{/if}}
+
+            <button type="button" class="btn btn-secondary report" title="Report this profile"><i
+                    class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             </button>
         </div>
-        {{/if}}
         <h3>Photos</h3>
         <div class="gallery">
             {{#each photos}}

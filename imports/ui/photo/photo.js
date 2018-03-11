@@ -38,4 +38,7 @@ Template.photo.events({
         }
         Photos.remove(this._id);
     },
+    'click .report'() {
+        Modal.show('reportModal', Template.currentData());
+    },
 });

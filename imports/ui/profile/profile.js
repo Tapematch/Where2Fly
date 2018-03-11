@@ -1,7 +1,7 @@
-import { Template } from 'meteor/templating';
-import { Blaze } from 'meteor/blaze'
+import {Template} from 'meteor/templating';
+import {Blaze} from 'meteor/blaze'
 import {Tracker} from 'meteor/tracker'
-import { Places } from "../../api/places.js"
+import {Places} from "../../api/places.js"
 import './profile.html';
 import '../map/placeinfo.js';
 import {Photos} from "../../api/photos";
@@ -14,16 +14,17 @@ Template.profile.onCreated(function () {
     Tracker.autorun(() => {
         var userId = FlowRouter.getQueryParam("userId");
         var user;
-        if (typeof userId == 'undefined') {
+        if (typeof userId == 'undefined' || userId == Meteor.userId()) {
             userId = Meteor.userId();
             user = Meteor.user();
         } else {
             user = Meteor.users.findOne(userId);
         }
-        console.log(userId);
         places = Places.find({"owner": userId});
         var likes = user.profile.likes;
         likedPlaces = Places.find({_id: {$in: likes}});
+        console.log(likedPlaces.count());
+
     });
 
     // We can use the `ready` callback to interact with the map API once the map is ready.
@@ -57,7 +58,7 @@ Template.profile.onCreated(function () {
 
 function placeMarkerOnMap(like, place, map) {
     var image;
-    if(like){
+    if (like) {
         image = '/img/marker-icon-like.png';
     } else {
         image = '/img/marker-icon.png';
@@ -78,13 +79,13 @@ function placeMarkerOnMap(like, place, map) {
         content: contentString
     });
     var renderedView;
-    marker.addListener('click', function() {
+    marker.addListener('click', function () {
         infowindow.open(map.instance, marker);
         if (renderedView === undefined) {
             renderedView = Blaze.renderWithData(Template.placeinfo, {place}, document.getElementById(place._id + 'info'));
         }
     });
-    infowindow.addListener('closeclick', function() {
+    infowindow.addListener('closeclick', function () {
         Blaze.remove(renderedView);
         renderedView = undefined;
     });
@@ -93,7 +94,7 @@ function placeMarkerOnMap(like, place, map) {
 }
 
 function deleteMarker(placeId) {
-    visiblemarkers.forEach(function(marker) {
+    visiblemarkers.forEach(function (marker) {
         if (marker.id === placeId) {
             marker.setMap(null);
         }
@@ -126,7 +127,7 @@ Template.profile.helpers({
     },
     photos() {
         var userId = FlowRouter.getQueryParam("userId");
-        if (typeof userId == 'undefined') {
+        if (typeof userId == 'undefined' || userId == Meteor.userId()) {
             userId = Meteor.userId();
         }
         return Photos.find({"owner": userId}, {sort: {createdAt: -1}});
@@ -137,6 +138,17 @@ Template.profile.events({
 
     'click .edit'() {
         Modal.show('editProfileModal');
+    },
+
+    'click .report'() {
+        var userId = FlowRouter.getQueryParam("userId");
+        var user;
+        if (userId === undefined) {
+            user = Meteor.user();
+        } else {
+            user = Meteor.users.findOne(userId);
+        }
+        Modal.show('reportModal', user);
     },
 });
 

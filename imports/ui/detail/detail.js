@@ -4,6 +4,7 @@ import {Places} from '../../api/places.js';
 import {Photos} from '../../api/photos.js';
 import '../map/placeinfo.js';
 import '../photo/photo.js';
+import '../report/report.js';
 import './detail.html';
 
 
@@ -113,29 +114,15 @@ Template.detail.events({
 
     'click .unlike'() {
         var pid = FlowRouter.getParam("pid");
-        var likes = Meteor.user().profile.likes;
-        var index = likes.indexOf(pid);
-        if (index > -1) {
-            likes.splice(index, 1);
-        }
         Meteor.users.update({_id: Meteor.userId()}, {
-            $set: {
-                'profile.likes': likes
-            }
+            $pull: { 'profile.likes': pid }
         });
     },
 
     'click .like'() {
         var pid = FlowRouter.getParam("pid");
-        var likes = Meteor.user().profile.likes;
-        if(likes === undefined){
-            likes = []
-        }
-        likes.push(pid);
         Meteor.users.update({_id: Meteor.userId()}, {
-            $set: {
-                'profile.likes': likes
-            }
+            $addToSet: { 'profile.likes': pid }
         });
     },
 
@@ -152,6 +139,10 @@ Template.detail.events({
         Places.remove(pid);
 
         FlowRouter.go('/');
+    },
+
+    'click .report'() {
+        Modal.show('reportModal', getPlace());
     },
 });
 
