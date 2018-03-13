@@ -44,7 +44,6 @@ Template.map.onCreated(function () {
             filter = {$or: flightLightFilters};
         }
         places = Places.find({$and: [privatePropertyFilter, filter]});
-        console.log(places.count());
 
         if (globalMap !== undefined) {
             var newPlaceIds = [];
@@ -215,8 +214,6 @@ function findClosestMarker(location) {
             marker = visiblemarkers[i];
         }
     }
-    console.log(marker.title);
-    console.log(lowestDistance);
     //only open marker if closer than 100m
     if (lowestDistance < 100) {
         return marker;

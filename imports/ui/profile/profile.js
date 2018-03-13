@@ -23,7 +23,6 @@ Template.profile.onCreated(function () {
         places = Places.find({"owner": userId});
         var likes = user.profile.likes;
         likedPlaces = Places.find({_id: {$in: likes}});
-        console.log(likedPlaces.count());
 
     });
 

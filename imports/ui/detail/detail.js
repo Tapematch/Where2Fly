@@ -48,7 +48,6 @@ Template.detail.helpers({
     displayID() {
 
         var pid = FlowRouter.getParam("pid");
-        console.log("PID von details.js: " + pid);
         return pid;
     },
     displayValues() {
@@ -104,8 +103,6 @@ Template.detail.helpers({
         return (likes != undefined && likes.indexOf(pid) != -1);
     },
     isOwnPlace(userId) {
-        console.log(userId);
-        console.log(Meteor.userId());
         return (userId == Meteor.userId());
     }
 });
@@ -178,7 +175,6 @@ Template.uploadPhotoModal.events({
             var place = FlowRouter.getParam("pid");
             if (event.target.photo.files.length != 0) {
                 var modal = Modal.show('uploadingModal');
-                console.log('upload...');
                 var file = event.target.photo.files[0];
                 var reader = new FileReader();
                 reader.onload = function(e) {

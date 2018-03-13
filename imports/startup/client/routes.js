@@ -11,7 +11,6 @@ import '../../ui/profile/profile.js';
 FlowRouter.route('/', {
     name: 'home',
     action() {
-        console.log("Home");
         BlazeLayout.render('body', {header: 'header', body: 'map', footer: 'footer'});
     },
 });
@@ -19,7 +18,6 @@ FlowRouter.route('/', {
 FlowRouter.route('/login', {
     name: 'login',
     action() {
-        console.log("Login");
         BlazeLayout.render('body', {header: 'header', body: 'login', footer: 'footer'});
     },
 });
@@ -27,7 +25,6 @@ FlowRouter.route('/login', {
 FlowRouter.route('/logout', {
     name: 'login',
     action() {
-        console.log("Logout");
         Meteor.logout();
         FlowRouter.go('/');
     },
@@ -36,7 +33,6 @@ FlowRouter.route('/logout', {
 FlowRouter.route('/feed', {
     name: 'feed',
     action() {
-        console.log("placelist");
         BlazeLayout.render('body', { header: 'header', body: 'feed', footer: 'footer' });
     },
 });
@@ -44,7 +40,6 @@ FlowRouter.route('/feed', {
 FlowRouter.route('/profile', {
     name: 'profile',
     action() {
-        console.log("profile");
         BlazeLayout.reset();
         BlazeLayout.render('body', { header: 'header', body: 'profile', footer: 'footer' });
     },
@@ -53,7 +48,6 @@ FlowRouter.route('/profile', {
 FlowRouter.route('/place/:pid', {
     name: 'details',
     action() {
-        console.log("detail");
         BlazeLayout.render('body', {header: 'header', body: 'detail', footer: 'footer'});
     },
 });
