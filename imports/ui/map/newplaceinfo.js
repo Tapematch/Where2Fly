@@ -30,10 +30,11 @@ Template.newplaceinfo.events({
         const flightLight = parseInt(target.flightLight.value);
         const privateProperty = target.privateProperty.checked;
 
-        var id = Meteor.call('places.insert', title, flightLight, privateProperty, lat, lng);
-        searchmarker.setMap(null);
-        searchmarker = null;
+        Meteor.call('places.insert', title, flightLight, privateProperty, lat, lng, (error, result) => {
+            searchmarker.setMap(null);
+            searchmarker = null;
+            FlowRouter.go('/place/' + result);
+        });
 
-        FlowRouter.go('/place/' + id);
     },
 });

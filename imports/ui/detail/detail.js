@@ -136,15 +136,6 @@ Template.detail.events({
     },
 });
 
-Template.editPlaceModal.onRendered(function () {
-
-    var slider = new Slider('#ex1', {
-        formatter: function(value) {
-            return 'Current value: ' + value;
-        }
-    });
-});
-
 Template.editPlaceModal.helpers({
     displayValues() {
         return getPlace();
