@@ -1,6 +1,13 @@
 <template name="profile">
+    <heroimage>
+        <div class="map-container-detail">
+            {{> googleMap name="myprofileMap" options=myprofileMapOptions}}
+        </div>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </heroimage>
     <div class="container">
-        <h2>{{_ "profile"}}</h2>
         <h3>{{_ "user"}}</h3>
         <ul>
             <li>{{_ "username"}}: {{user.username}}</li>
@@ -30,6 +37,12 @@
                     class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             </button>
         </div>
+        <h3>{{_ "comments"}}</h3>
+        <div class="row">
+            {{#each comments}}
+                {{> comment}}
+            {{/each}}
+        </div>
         <h3>{{_ "photos"}}</h3>
         <div class="gallery">
             {{#each photos}}
@@ -37,17 +50,7 @@
             {{/each}}
         </div>
         <div class="row"></div>
-
-        <h3>{{_ "places"}}</h3>
     </div>
-    <heroimage>
-        <div class="map-container-detail">
-            {{> googleMap name="myprofileMap" options=myprofileMapOptions}}
-        </div>
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    </heroimage>
 </template>
 
 <template name="editProfileModal">

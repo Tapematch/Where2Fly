@@ -2,8 +2,10 @@ import {Template} from 'meteor/templating';
 import {Blaze} from 'meteor/blaze'
 import {Places} from '../../api/places.js';
 import {Photos} from '../../api/photos.js';
+import {Comments} from '../../api/comments.js';
 import '../map/placeinfo.js';
 import '../photo/photo.js';
+import '../comment/comment.js';
 import '../report/report.js';
 import './detail.html';
 
@@ -93,6 +95,10 @@ Template.detail.helpers({
             };
         }
     },
+    comments() {
+        var pid = FlowRouter.getParam("pid");
+        return Comments.find({"place": pid}, {sort: {createdAt: -1}});
+    },
     photos() {
         var pid = FlowRouter.getParam("pid");
         return Photos.find({"place": pid}, {sort: {createdAt: -1}});
@@ -127,6 +133,10 @@ Template.detail.events({
         Modal.show('editPlaceModal');
     },
 
+    'click .write-comment'() {
+        Modal.show('commentModal');
+    },
+
     'click .upload-photo'() {
         Modal.show('uploadPhotoModal');
     },
@@ -156,6 +166,19 @@ Template.editPlaceModal.events({
         Modal.hide('editPlaceModal');
     },
 });
+
+Template.commentModal.events({
+    'submit #commentForm'(event)  {
+        event.preventDefault();
+
+        var place = FlowRouter.getParam("pid");
+        var comment = event.target.comment.value;
+        Meteor.call('comments.insert', place, comment);
+
+        Modal.hide('commentModal');
+    }
+});
+
 
 Template.uploadPhotoModal.events({
     'submit .save'(event) {

@@ -5,6 +5,7 @@ import {Places} from "../../api/places.js"
 import './profile.html';
 import '../map/placeinfo.js';
 import {Photos} from "../../api/photos";
+import {Comments} from "../../api/comments";
 
 var visiblemarkers = [];
 
@@ -130,6 +131,14 @@ Template.profile.helpers({
             userId = Meteor.userId();
         }
         return Photos.find({"owner": userId}, {sort: {createdAt: -1}});
+    }
+    ,
+    comments() {
+        var userId = FlowRouter.getQueryParam("userId");
+        if (typeof userId == 'undefined' || userId == Meteor.userId()) {
+            userId = Meteor.userId();
+        }
+        return Comments.find({"owner": userId}, {sort: {createdAt: -1}});
     }
 });
 

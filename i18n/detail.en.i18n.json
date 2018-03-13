@@ -13,5 +13,9 @@
   "savePhoto": "Save Photo",
   "uploading": "Uploading...",
   "privateProperty": "private property",
-  "publicProperty": "public property"
+  "publicProperty": "public property",
+  "writeComment": "Write Comment",
+  "saveComment": "Save Comment",
+  "comment": "Comment",
+  "comments": "Comments"
 }

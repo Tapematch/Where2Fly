@@ -2,6 +2,7 @@ import {Template} from 'meteor/templating';
 import {Places} from '../../api/places.js';
 import './feed.html';
 import {Photos} from "../../api/photos";
+import {Comments} from "../../api/comments";
 import {Blaze} from "meteor/blaze";
 
 var visiblemarkers = [];
@@ -70,6 +71,9 @@ function deleteMarker(placeId) {
 Template.feed.helpers({
     photos() {
         return Photos.find({}, {sort: {createdAt: -1}, limit: 8});
+    },
+    comments() {
+        return Comments.find({}, {sort: {createdAt: -1}, limit: 8});
     },
     feedMapOptions: function () {
         // Make sure the maps API has loaded
