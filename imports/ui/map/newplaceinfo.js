@@ -1,5 +1,4 @@
 import { Template } from 'meteor/templating';
-import { Places } from '../../api/places.js';
 import './newplaceinfo.html';
 
 
@@ -31,16 +30,7 @@ Template.newplaceinfo.events({
         const flightLight = parseInt(target.flightLight.value);
         const privateProperty = target.privateProperty.checked;
 
-        var id = Places.insert({
-            owner: Meteor.userId(),
-            username: Meteor.user().username,
-            privateProperty,
-            flightLight,
-            title,
-            lat,
-            lng,
-            createdAt: new Date(), // current time
-        });
+        var id = Meteor.call('places.insert', title, flightLight, privateProperty, lat, lng);
         searchmarker.setMap(null);
         searchmarker = null;
 

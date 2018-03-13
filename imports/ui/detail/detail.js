@@ -134,16 +134,18 @@ Template.detail.events({
         Modal.show('uploadPhotoModal');
     },
 
-    'click .delete'() {
-        var pid = FlowRouter.getParam("pid");
-        Places.remove(pid);
-
-        FlowRouter.go('/');
-    },
-
     'click .report'() {
         Modal.show('reportModal', getPlace());
     },
+});
+
+Template.editPlaceModal.onRendered(function () {
+
+    var slider = new Slider('#ex1', {
+        formatter: function(value) {
+            return 'Current value: ' + value;
+        }
+    });
 });
 
 Template.editPlaceModal.helpers({
@@ -161,13 +163,7 @@ Template.editPlaceModal.events({
         var flightLight = parseInt(event.target.flightLight.value);
         var privateProperty = event.target.privateProperty.checked;
 
-        Places.update(pid, {
-            $set: {
-                title,
-                flightLight,
-                privateProperty
-            },
-        });
+        Meteor.call('places.update', pid, title, flightLight, privateProperty);
 
         Modal.hide('editPlaceModal');
     },
@@ -179,9 +175,6 @@ Template.uploadPhotoModal.events({
         Modal.hide('uploadPhotoModal');
         setTimeout(function(){
             var url;
-            var user = Meteor.user();
-            var username = user.username;
-            var owner = user._id;
             var place = FlowRouter.getParam("pid");
             if (event.target.photo.files.length != 0) {
                 var modal = Modal.show('uploadingModal');
@@ -197,27 +190,14 @@ Template.uploadPhotoModal.events({
                         if ( errMsg ) return alert('File upload failed. Please upload an image of a smaller file size');
                         url = imgurData.link;
                         var deleteHash = imgurData.deletehash;
-                        Photos.insert({
-                            username,
-                            owner,
-                            place,
-                            url,
-                            deleteHash,
-                            createdAt: new Date(), // current time
-                        });
+                        Meteor.call('photos.insert', place, url, deleteHash);
                         Modal.hide('uploadingModal');
                     });
                 };
                 reader.readAsDataURL(file);
             } else {
                 url = event.target.url.value;
-                Photos.insert({
-                    username,
-                    owner,
-                    place,
-                    url,
-                    createdAt: new Date(), // current time
-                });
+                Meteor.call('photos.insert', place, url);
             }
         }, 500);
     }

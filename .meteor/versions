@@ -45,7 +45,6 @@ html-tools@1.0.11
 htmljs@1.0.11
 http@1.4.0
 id-map@1.1.0
-insecure@1.0.7
 jquery@1.11.11
 kadira:blaze-layout@2.3.0
 kadira:flow-router@2.12.1
@@ -81,6 +80,7 @@ reactive-var@1.0.11
 reload@1.2.0
 retry@1.1.0
 reywood:bootstrap3-sass@3.3.5_1
+rgnevashev:bootstrap-slider@6.1.6
 routepolicy@1.0.12
 server-render@0.3.0
 service-configuration@1.0.11
