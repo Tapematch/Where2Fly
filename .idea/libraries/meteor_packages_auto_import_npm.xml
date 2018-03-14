@@ -3393,6 +3393,11 @@
         <item url="file://$USER_HOME$/.meteor/packages/babel-compiler/7.0.5/npm/node_modules/@babel/core/lib/config/files/index-browser.js" />
         <item url="file://$USER_HOME$/.meteor/packages/babel-compiler/7.0.5/npm/node_modules/@babel/core/lib/config/files/index.js" />
         <item url="file://$USER_HOME$/.meteor/packages/babel-compiler/7.0.5/npm/node_modules/@babel/core/lib/config/config-chain.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/robodo_meteor-debug/0.0.6/npm/node_modules/debug/node.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/robodo_meteor-debug/0.0.6/npm/node_modules/debug/browser.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/robodo_meteor-debug/0.0.6/npm/node_modules/debug/debug.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/aldeed_simple-schema/1.3.3/npm/node_modules/string/lib/string.min.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/aldeed_simple-schema/1.3.3/npm/node_modules/string/lib/string.js" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.5.0/npm/node_modules/basic-auth-connect/index.js" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.5.0/npm/node_modules/stream-to-string/index.js" />
         <item url="file://$USER_HOME$/.meteor/packages/webapp/1.5.0/npm/node_modules/promise-polyfill/Gruntfile.js" />
@@ -10409,6 +10414,11 @@
       <root url="file://$USER_HOME$/.meteor/packages/babel-compiler/7.0.5/npm/node_modules/@babel/core/lib/config/files/index-browser.js" />
       <root url="file://$USER_HOME$/.meteor/packages/babel-compiler/7.0.5/npm/node_modules/@babel/core/lib/config/files/index.js" />
       <root url="file://$USER_HOME$/.meteor/packages/babel-compiler/7.0.5/npm/node_modules/@babel/core/lib/config/config-chain.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/robodo_meteor-debug/0.0.6/npm/node_modules/debug/node.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/robodo_meteor-debug/0.0.6/npm/node_modules/debug/browser.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/robodo_meteor-debug/0.0.6/npm/node_modules/debug/debug.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/aldeed_simple-schema/1.3.3/npm/node_modules/string/lib/string.min.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/aldeed_simple-schema/1.3.3/npm/node_modules/string/lib/string.js" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.5.0/npm/node_modules/basic-auth-connect/index.js" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.5.0/npm/node_modules/stream-to-string/index.js" />
       <root url="file://$USER_HOME$/.meteor/packages/webapp/1.5.0/npm/node_modules/promise-polyfill/Gruntfile.js" />

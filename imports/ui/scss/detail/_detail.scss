@@ -62,6 +62,7 @@
   height: 300px;
 }
 
+.property-switch {
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -180,10 +181,23 @@ input[type=range]::-webkit-slider-thumb {
   bottom: 40px;
   width: 100px;
 }
+}
 
 .custom-file-control:before{
   content: "Browse";
 }
 .custom-file-control:after{
   content: "Add files..";
+}
+
+.upload-photo.save {
+  margin-top: 1.5em;
+}
+
+.flight-light {
+  .slider {
+    &.slider-horizontal {
+      margin-left: 10px;
+    }
+  }
 }

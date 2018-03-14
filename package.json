@@ -10,6 +10,7 @@
     "bcrypt": "^1.0.3",
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
+    "bootstrap-slider": "^10.0.0",
     "meteor-node-stubs": "^0.3.2"
   }
 }

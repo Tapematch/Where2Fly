@@ -25,6 +25,13 @@ Template.detail.onCreated(function () {
     });
 });
 
+Template.editPlaceModal.onRendered(function () {
+    var slider = new Slider("#ex21", {
+        reversed: false,
+        tooltip_position: 'left'
+    });
+});
+
 function placeMarkerOnMap(place, map) {
     var image = '/img/marker-icon.png';
     var myLatlng = new google.maps.LatLng(place.lat, place.lng);
@@ -232,3 +239,4 @@ function uint8ToString(buffer) {
 
     return str
 }
+

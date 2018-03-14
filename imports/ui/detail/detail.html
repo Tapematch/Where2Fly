@@ -97,14 +97,21 @@
                                value={{displayValues.title}}><br>
 
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 flight-light">
 
-                                <input type="number" name="flightLight" step="1" min="1" max="3"
-                                       value={{displayValues.flightLight}}><br>
-
+                                <label for="flightlight-label">Flightlight</label><br>
+                                <input id="ex21" name="flightLight" type="text"
+                                       data-provide="slider"
+                                       data-slider-ticks="[1, 2, 3]"
+                                       data-slider-ticks-labels='["erlaubt", "mit Absprache", "nicht möglich/erlaubt"]'
+                                       data-slider-min="1"
+                                       data-slider-max="3"
+                                       data-slider-step="1"
+                                       data-slider-value="3"
+                                />
 
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 property-switch">
 
                                 <!-- Rounded switch -->
                                 <label for="property">{{_ "isPrivateProperty"}}</label><br>
