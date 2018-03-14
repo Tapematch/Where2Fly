@@ -1,0 +1,29 @@
+<template name="comment">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            {{comment}}
+        </div>
+        <div class="panel-footer">
+            {{#unless isCurrentPlace place}}
+                <a href="/place/{{place}}"><i class="fa fa-map-marker" aria-hidden="true"></i> {{getPlaceName
+                        place}}
+                </a>
+            {{/unless}}
+            {{#if isCurrentUser owner}}
+                <button type="button" class="btn btn-danger delete"><span class="glyphicon glyphicon-remove"
+                                                                          aria-hidden="true"></span> {{_
+                        "deleteComment"}}
+                </button>
+            {{else}}
+                {{#unless isUserProfile}}
+                    <a href="/profile?userId={{owner}}"><i class="fa fa-user"
+                                                           aria-hidden="true"></i> {{username}}
+                    </a>
+                {{/unless}}
+                <button type="button" class="btn btn-secondary report" title="{{_ "reportComment"}}"><i
+                        class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </button>
+            {{/if}}
+        </div>
+    </div>
+</template>
