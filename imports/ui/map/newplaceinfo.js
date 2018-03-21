@@ -1,5 +1,4 @@
 import { Template } from 'meteor/templating';
-import { Places } from '../../api/places.js';
 import './newplaceinfo.html';
 
 
@@ -31,19 +30,11 @@ Template.newplaceinfo.events({
         const flightLight = parseInt(target.flightLight.value);
         const privateProperty = target.privateProperty.checked;
 
-        var id = Places.insert({
-            owner: Meteor.userId(),
-            username: Meteor.user().username,
-            privateProperty,
-            flightLight,
-            title,
-            lat,
-            lng,
-            createdAt: new Date(), // current time
+        Meteor.call('places.insert', title, flightLight, privateProperty, lat, lng, (error, result) => {
+            searchmarker.setMap(null);
+            searchmarker = null;
+            FlowRouter.go('/place/' + result);
         });
-        searchmarker.setMap(null);
-        searchmarker = null;
 
-        FlowRouter.go('/place/' + id);
     },
 });

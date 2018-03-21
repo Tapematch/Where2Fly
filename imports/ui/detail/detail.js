@@ -2,8 +2,10 @@ import {Template} from 'meteor/templating';
 import {Blaze} from 'meteor/blaze'
 import {Places} from '../../api/places.js';
 import {Photos} from '../../api/photos.js';
+import {Comments} from '../../api/comments.js';
 import '../map/placeinfo.js';
 import '../photo/photo.js';
+import '../comment/comment.js';
 import '../report/report.js';
 import './detail.html';
 
@@ -55,7 +57,6 @@ Template.detail.helpers({
     displayID() {
 
         var pid = FlowRouter.getParam("pid");
-        console.log("PID von details.js: " + pid);
         return pid;
     },
     displayValues() {
@@ -101,6 +102,10 @@ Template.detail.helpers({
             };
         }
     },
+    comments() {
+        var pid = FlowRouter.getParam("pid");
+        return Comments.find({"place": pid}, {sort: {createdAt: -1}});
+    },
     photos() {
         var pid = FlowRouter.getParam("pid");
         return Photos.find({"place": pid}, {sort: {createdAt: -1}});
@@ -111,8 +116,6 @@ Template.detail.helpers({
         return (likes != undefined && likes.indexOf(pid) != -1);
     },
     isOwnPlace(userId) {
-        console.log(userId);
-        console.log(Meteor.userId());
         return (userId == Meteor.userId());
     }
 });
@@ -137,15 +140,12 @@ Template.detail.events({
         Modal.show('editPlaceModal');
     },
 
-    'click .upload-photo'() {
-        Modal.show('uploadPhotoModal');
+    'click .write-comment'() {
+        Modal.show('commentModal');
     },
 
-    'click .delete'() {
-        var pid = FlowRouter.getParam("pid");
-        Places.remove(pid);
-
-        FlowRouter.go('/');
+    'click .upload-photo'() {
+        Modal.show('uploadPhotoModal');
     },
 
     'click .report'() {
@@ -168,17 +168,24 @@ Template.editPlaceModal.events({
         var flightLight = parseInt(event.target.flightLight.value);
         var privateProperty = event.target.privateProperty.checked;
 
-        Places.update(pid, {
-            $set: {
-                title,
-                flightLight,
-                privateProperty
-            },
-        });
+        Meteor.call('places.update', pid, title, flightLight, privateProperty);
 
         Modal.hide('editPlaceModal');
     },
 });
+
+Template.commentModal.events({
+    'submit #commentForm'(event)  {
+        event.preventDefault();
+
+        var place = FlowRouter.getParam("pid");
+        var comment = event.target.comment.value;
+        Meteor.call('comments.insert', place, comment);
+
+        Modal.hide('commentModal');
+    }
+});
+
 
 Template.uploadPhotoModal.events({
     'submit .save'(event) {
@@ -186,13 +193,9 @@ Template.uploadPhotoModal.events({
         Modal.hide('uploadPhotoModal');
         setTimeout(function(){
             var url;
-            var user = Meteor.user();
-            var username = user.username;
-            var owner = user._id;
             var place = FlowRouter.getParam("pid");
             if (event.target.photo.files.length != 0) {
                 var modal = Modal.show('uploadingModal');
-                console.log('upload...');
                 var file = event.target.photo.files[0];
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -204,27 +207,14 @@ Template.uploadPhotoModal.events({
                         if ( errMsg ) return alert('File upload failed. Please upload an image of a smaller file size');
                         url = imgurData.link;
                         var deleteHash = imgurData.deletehash;
-                        Photos.insert({
-                            username,
-                            owner,
-                            place,
-                            url,
-                            deleteHash,
-                            createdAt: new Date(), // current time
-                        });
+                        Meteor.call('photos.insert', place, url, deleteHash);
                         Modal.hide('uploadingModal');
                     });
                 };
                 reader.readAsDataURL(file);
             } else {
                 url = event.target.url.value;
-                Photos.insert({
-                    username,
-                    owner,
-                    place,
-                    url,
-                    createdAt: new Date(), // current time
-                });
+                Meteor.call('photos.insert', place, url);
             }
         }, 500);
     }

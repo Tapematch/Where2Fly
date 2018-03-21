@@ -44,7 +44,6 @@ Template.map.onCreated(function () {
             filter = {$or: flightLightFilters};
         }
         places = Places.find({$and: [privatePropertyFilter, filter]});
-        console.log(places.count());
 
         if (globalMap !== undefined) {
             var newPlaceIds = [];
@@ -116,22 +115,15 @@ Template.map.onCreated(function () {
             setNewMarker(map, event.latLng, TAPi18n.__("newPlace"));
         });
 
-        var geolocationControlDiv = document.createElement('div');
-        var geolocationControl = new GeolocationControl(geolocationControlDiv, map);
-
-        geolocationControlDiv.index = 2;
-        map.instance.controls[google.maps.ControlPosition.LEFT_TOP].push(geolocationControlDiv);
-
-        var filterControlDiv = document.createElement('div');
-        var filterControl = new FilterControl(filterControlDiv);
-
-        filterControlDiv.index = 3;
-        map.instance.controls[google.maps.ControlPosition.LEFT_TOP].push(filterControlDiv);
+        var controlDiv = document.createElement('div');
+        controlDiv.index = 2;
+        var geolocationControl = new GeolocationControl(controlDiv, map);
+        var filterControl = new FilterControl(controlDiv);
+        map.instance.controls[google.maps.ControlPosition.LEFT_TOP].push(controlDiv);
 
         var filterDiv = document.createElement('div');
         filterDiv.id = "filter";
-
-        filterDiv.index = 4;
+        filterDiv.index = 3;
         map.instance.controls[google.maps.ControlPosition.LEFT_TOP].push(filterDiv);
 
 
@@ -150,7 +142,7 @@ Template.map.helpers({
                 mapTypeControl: true,
                 mapTypeControlOptions: {
                     style: google.maps.MapTypeControlStyle.DEFAULT,
-                    position: google.maps.ControlPosition.TOP_CENTER
+                    position: google.maps.ControlPosition.BOTTOM_CENTER
                 },
             };
         }
@@ -222,8 +214,6 @@ function findClosestMarker(location) {
             marker = visiblemarkers[i];
         }
     }
-    console.log(marker.title);
-    console.log(lowestDistance);
     //only open marker if closer than 100m
     if (lowestDistance < 100) {
         return marker;
@@ -310,6 +300,7 @@ function FilterControl(controlDiv, state) {
     controlUI.style.borderRadius = '3px';
     controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
     controlUI.style.cursor = 'pointer';
+    controlUI.style.cssFloat = 'right';
     controlUI.style.margin = '12px 0 0 12px';
     controlUI.style.padding = '0 5px 0 5px';
     controlUI.style.textAlign = 'center';
@@ -349,6 +340,7 @@ function GeolocationControl(controlDiv, map) {
     controlUI.style.borderRadius = '3px';
     controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
     controlUI.style.cursor = 'pointer';
+    controlUI.style.cssFloat = 'right';
     controlUI.style.margin = '12px 0 0 12px';
     controlUI.style.padding = '0 5px 0 5px';
     controlUI.style.textAlign = 'center';

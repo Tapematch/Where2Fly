@@ -24,19 +24,7 @@ Template.photo.helpers({
 
 Template.photo.events({
     'click .delete'() {
-        if (this.deleteHash != undefined) {
-            var options = {
-                apiKey: '3fc2c494c55efcf',
-                deleteHash: this.deleteHash
-            };
-            Imgur.delete(options, function (errMsg, imgurData) {
-                if (errMsg)
-                    console.log(errMsg);
-                else
-                    console.log('Imgur Photo deleted');
-            });
-        }
-        Photos.remove(this._id);
+        Meteor.call('photos.remove', this.deleteHash, this._id);
     },
     'click .report'() {
         Modal.show('reportModal', Template.currentData());

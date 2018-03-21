@@ -1,6 +1,6 @@
 <template name="map">
     <heroimage>
-        <input id="pac-input" class="controls" type="text" placeholder={{_ "searchBoxPlaceholder"}}>
+        <input id="pac-input" class="controls" type="text" style="font-family:Roboto, FontAwesome"  placeholder="&#xf002; {{_ "searchBoxPlaceholder"}}">
         <div class="map-container">
             {{> googleMap name="placesMap" options=placesMapOptions}}
         </div>

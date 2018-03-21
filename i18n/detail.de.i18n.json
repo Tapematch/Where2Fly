@@ -13,5 +13,9 @@
   "savePhoto": "Foto speichern",
   "uploading": "Lädt hoch...",
   "privateProperty": "Privatgelände",
-  "publicProperty": "Öffentliches Gelände"
+  "publicProperty": "Öffentliches Gelände",
+  "writeComment": "Bemerkung schreiben",
+  "saveComment": "Bemerkung speichern",
+  "comment": "Bemerkung",
+  "comments": "Bemerkungen"
 }

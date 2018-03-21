@@ -11,8 +11,7 @@
             {{/unless}}
             {{#if isCurrentUser owner}}
                 <button type="button" class="btn btn-danger delete"><span class="glyphicon glyphicon-remove"
-                                                                          aria-hidden="true"></span> {{_
-                        "deleteComment"}}
+                                                                          aria-hidden="true"></span> {{_ "deleteComment"}}
                 </button>
             {{else}}
                 {{#unless isUserProfile}}
@@ -20,8 +19,7 @@
                                                            aria-hidden="true"></i> {{username}}
                     </a>
                 {{/unless}}
-                <button type="button" class="btn btn-secondary report" title="{{_ "reportComment"}}"><i
-                        class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                <button type="button" class="btn btn-secondary report" title="{{_ "reportComment"}}"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                 </button>
             {{/if}}
         </div>
