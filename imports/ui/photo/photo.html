@@ -1,7 +1,9 @@
 <template name="photo">
     <div class="col-sm-6 col-md-3">
         <div class="thumbnail">
-            <img src="{{url}}" alt="Photo" style="width:100%">
+            <a data-fancybox="gallery" href="{{url}}">
+                <img src="{{toThumbnail url}}" alt="Photo" style="width:100%">
+            </a>
             <div class="caption">
                 <p>
                     {{#unless isCurrentPlace place}}
@@ -13,7 +15,8 @@
                 <p>
                     {{#if isCurrentUser owner}}
                         <button type="button" class="btn btn-danger delete"><span class="glyphicon glyphicon-remove"
-                                                                                  aria-hidden="true"></span> {{_ "deletePhoto"}}
+                                                                                  aria-hidden="true"></span> {{_
+                                "deletePhoto"}}
                         </button>
                     {{else}}
                         {{#unless isUserProfile}}
@@ -21,7 +24,8 @@
                                                                    aria-hidden="true"></i> {{username}}
                             </a>
                         {{/unless}}
-                        <button type="button" class="btn btn-secondary report" title="{{_ "reportPhoto"}}"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        <button type="button" class="btn btn-secondary report" title="{{_ "reportPhoto"}}"><i
+                                class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                         </button>
                     {{/if}}
                 </p>

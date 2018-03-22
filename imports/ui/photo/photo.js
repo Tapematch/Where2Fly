@@ -1,7 +1,6 @@
 import './photo.html';
 import {Template} from "meteor/templating";
 import {Places} from "../../api/places";
-import {Photos} from "../../api/photos";
 
 Template.photo.helpers({
     isCurrentUser(userId) {
@@ -19,6 +18,9 @@ Template.photo.helpers({
     getPlaceName(placeId) {
         var place = Places.findOne({_id: placeId});
         return place.title;
+    },
+    toThumbnail(imageUrl) {
+        return Imgur.toThumbnail(imageUrl, Imgur.SMALL_THUMBNAIL);
     }
 });
 
@@ -28,5 +30,5 @@ Template.photo.events({
     },
     'click .report'() {
         Modal.show('reportModal', Template.currentData());
-    },
+    }
 });

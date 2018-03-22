@@ -192,30 +192,36 @@ Template.uploadPhotoModal.events({
         event.preventDefault();
         Modal.hide('uploadPhotoModal');
         setTimeout(function(){
-            var url;
-            var place = FlowRouter.getParam("pid");
+
+            Modal.show('uploadingModal');
+
+            function uploadOptions(image) {
+                return {
+                    apiKey: '3fc2c494c55efcf',
+                    image: image
+                };
+            }
+
+            var imgurCallback = function(errMsg, imgurData) {
+                if ( errMsg ) return alert('File upload failed. Please upload an image of a smaller file size');
+                var place = FlowRouter.getParam("pid");
+                var url = imgurData.link;
+                var deleteHash = imgurData.deletehash;
+                Meteor.call('photos.insert', place, url, deleteHash);
+                Modal.hide('uploadingModal');
+            };
+
             if (event.target.photo.files.length != 0) {
-                var modal = Modal.show('uploadingModal');
                 var file = event.target.photo.files[0];
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    var options = {
-                        apiKey: '3fc2c494c55efcf',
-                        image: e.target.result
-                    };
-                    Imgur.upload(options, function(errMsg, imgurData) {
-                        if ( errMsg ) return alert('File upload failed. Please upload an image of a smaller file size');
-                        url = imgurData.link;
-                        var deleteHash = imgurData.deletehash;
-                        Meteor.call('photos.insert', place, url, deleteHash);
-                        Modal.hide('uploadingModal');
-                    });
+                    Imgur.upload(uploadOptions(e.target.result), imgurCallback);
                 };
                 reader.readAsDataURL(file);
             } else {
-                url = event.target.url.value;
-                Meteor.call('photos.insert', place, url);
+                Imgur.upload(uploadOptions(event.target.url.value), imgurCallback);
             }
+
         }, 500);
     }
 });
