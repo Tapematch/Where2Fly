@@ -2,10 +2,10 @@
 
 # [Where2Fly](https://where2fly.net/)
 
-Phil Taubert
-Daniel Mertens
+Phil Taubert  
+Daniel Mertens  
 
-Masterprojekt Medieninformatik Master - HTWK Leipzig
+Masterprojekt Medieninformatik Master - HTWK Leipzig  
 Betreuer: Herr Prof. Dr. Michael Frank
 
 ## 1. Projektziel
