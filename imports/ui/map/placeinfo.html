@@ -1,14 +1,22 @@
 <template name="placeinfo">
     <div class="placeinfo">
-        <h4>{{place.title}}</h4>
+        <h4 style="color:{{getColor place.flightLight}};">{{place.title}}</h4>
 
-        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{place.username}}<br>
+        <div class="col-xs-6">
+            FlightLight:
+            <div class="flightlight {{getColor place.flightLight}}">
+                <span class="icon"></span><br>
+            </div>
+        </div>
 
-        {{_ "flightLight"}}:<br>
-        {{place.flightLight}}
+        <div class="col-xs-6">
+            {{_ "privateProperty"}}:
 
-        {{_ "privateProperty"}}: <input type="checkbox" name="privateProperty" checked="{{place.privateProperty}}"
-                                 class="toggle-privateProperty"><br>
+            <div class="privateproperty-info {{getPrivateProperty place.privateProperty}}">
+                <i class="fa fa-4x fa-{{getPrivateProperty place.privateProperty}}"></i><br>
+            </div>
+
+        </div>
 
         <a href="/place/{{place._id}}" class="btn btn-primary details"><span class="glyphicon glyphicon-info-sign"
                                                                              aria-hidden="true"></span> {{_ "details"}}</a>

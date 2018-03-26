@@ -1,6 +1,6 @@
 <template name="photo">
-    <div class="col-sm-6 col-md-3">
-        <div class="thumbnail">
+    <div class="grid-item col-sm-3">
+        <div class="thumbnail grid-item-content">
             <img src="{{url}}" alt="Photo" style="width:100%">
             <div class="caption">
                 <p>
@@ -21,7 +21,8 @@
                                                                    aria-hidden="true"></i> {{username}}
                             </a>
                         {{/unless}}
-                        <button type="button" class="btn btn-secondary report" title="{{_ "reportPhoto"}}"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        <button type="button" class="btn btn-secondary report" title="{{_ "reportPhoto"}}"><i
+                                class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                         </button>
                     {{/if}}
                 </p>

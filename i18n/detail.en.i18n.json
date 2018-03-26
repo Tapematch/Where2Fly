@@ -17,5 +17,8 @@
   "writeComment": "Write Comment",
   "saveComment": "Save Comment",
   "comment": "Comment",
-  "comments": "Comments"
+  "comments": "Comments",
+  "allowed": "allowed",
+  "arrangement": "arrangement",
+  "denied": "denied"
 }

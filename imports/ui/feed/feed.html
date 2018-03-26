@@ -8,19 +8,29 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     </heroimage>
     <div class="container">
-        <div class="row">
-            <h2>{{_ "comments"}}</h2>
-            {{#each comments}}
-                {{> comment}}
-            {{/each}}
-        </div>
-        <div class="row">
+
+        <div class="photos">
             <h2>{{_ "latestPhotos"}}</h2>
-            <div class="gallery">
-                {{#each photos}}
-                    {{> photo}}
+            <div class="row">
+                <div class="grid gallery">
+                    {{#each photos}}
+                        {{> photo}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="comments">
+            <h2>{{_ "comments"}}</h2>
+            <div class="row">
+                {{#each comments}}
+                    <div class="col-sm-6">
+                        {{> comment}}
+                    </div>
                 {{/each}}
             </div>
         </div>
+
     </div>
 </template>

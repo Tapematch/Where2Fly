@@ -30,8 +30,45 @@ Template.detail.onCreated(function () {
 Template.editPlaceModal.onRendered(function () {
     var slider = new Slider("#ex21", {
         reversed: false,
-        tooltip_position: 'left'
+        rangeHighlights: [{"start": 1, "end": 2, "class": "category1"},
+            {"start": 2, "end": 3, "class": "category2"}],
+        formatter: function (value) {
+            switch (value) {
+                case 1:
+                    return "Erlaubt"
+                case 2:
+                    return "Nach Absprache"
+                case 3:
+                    return "Verboten"
+                default:
+                    return "Fehler"
+            }
+        },
     });
+
+    var elem = document.querySelector('.grid');
+    var msnry = new Masonry(elem, {
+        // options
+        itemSelector: '.grid-item',
+    });
+
+// element argument can be a selector string
+//   for an individual element
+    var msnry = new Masonry('.grid', {
+        // options
+    });
+
+    // layout Masonry after each image loads
+    $grid.imagesLoaded().progress(function () {
+        $grid.masonry('layout');
+    });
+
+    // external js: masonry.pkgd.js
+
+
+
+
+
 });
 
 function placeMarkerOnMap(place, map) {

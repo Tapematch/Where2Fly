@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Email } from 'meteor/email'
 import { Places } from '../imports/api/places.js';
 import { Photos } from '../imports/api/photos.js';
-import { Comments } from '../imports/api/comments.js';
+import {Comments} from '../imports/api/comments.js';
 
 Meteor.methods({
     report(reason, object) {

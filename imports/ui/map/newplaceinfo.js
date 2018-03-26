@@ -13,6 +13,27 @@ Template.newplaceinfo.helpers({
     }
 });
 
+Template.newplaceinfo.onRendered(function () {
+    var slider = new Slider("#ex22", {
+        reversed: false,
+        rangeHighlights: [{"start": 1, "end": 2, "class": "category1"},
+            {"start": 2, "end": 3, "class": "category2"}],
+        formatter: function (value) {
+            switch (value) {
+                case 1:
+                    return "Erlaubt"
+                case 2:
+                    return "Nach Absprache"
+                case 3:
+                    return "Verboten"
+                default:
+                    return "Fehler"
+            }
+        },
+    });
+});
+
+
 Template.newplaceinfo.events({
     'submit .place-form'(event) {
         // Prevent default browser form submit
@@ -27,8 +48,8 @@ Template.newplaceinfo.events({
         const title = target.title.value;
         const lat = searchPosition.get("searchLat");
         const lng = searchPosition.get("searchLng");
-        const flightLight = parseInt(target.flightLight.value);
-        const privateProperty = target.privateProperty.checked;
+        const flightLight = parseInt(target.newflightLight.value);
+        const privateProperty = target.newprivateProperty.checked;
 
         Meteor.call('places.insert', title, flightLight, privateProperty, lat, lng, (error, result) => {
             searchmarker.setMap(null);

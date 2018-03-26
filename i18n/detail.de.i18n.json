@@ -17,5 +17,8 @@
   "writeComment": "Bemerkung schreiben",
   "saveComment": "Bemerkung speichern",
   "comment": "Bemerkung",
-  "comments": "Bemerkungen"
+  "comments": "Bemerkungen",
+  "allowed": "Erlaubt",
+  "arrangement": "Nach Absprache",
+  "denied": "Verboten"
 }

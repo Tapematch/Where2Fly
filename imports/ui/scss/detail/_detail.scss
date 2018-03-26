@@ -194,10 +194,29 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: 1.5em;
 }
 
-.flight-light {
   .slider {
     &.slider-horizontal {
       margin-left: 10px;
     }
+  }
+
+.slider-rangeHighlight.category1 {
+  background: #FF9900;
+}
+
+.category1 {
+  background-color: #ccc !important;
+}
+
+div.tooltip.tooltip-main.top {
+  margin-left: 0 !important;
+}
+
+.gallery {
+  .delete {
+    width: 100%;
+  }
+  .caption {
+    padding: 0;
   }
 }

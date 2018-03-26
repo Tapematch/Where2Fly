@@ -4,7 +4,7 @@ export const Places = new Mongo.Collection('places');
 
 Meteor.methods({
     'places.insert'(title, flightLight, privateProperty, lat, lng) {
-        if (! Meteor.userId()) {
+        if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
 

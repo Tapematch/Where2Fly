@@ -52,6 +52,23 @@ html, body {
   margin-left: 12px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
+
+  td {
+    padding: 1em;
+  }
+
+  .filterhead {
+    padding-bottom: .5em;
+    font-weight: 500;
+  }
+
+  .options {
+
+    label {
+      font-family: Roboto, sans-serif;
+      font-weight: 300;
+    }
+  }
 }
 
 .controls {

@@ -1,6 +1,7 @@
 <template name="map">
     <heroimage>
-        <input id="pac-input" class="controls" type="text" style="font-family:Roboto, FontAwesome"  placeholder="&#xf002; {{_ "searchBoxPlaceholder"}}">
+        <input id="pac-input" class="controls" type="text" style="font-family:Roboto, FontAwesome"
+               placeholder="&#xf002; {{_ "searchBoxPlaceholder"}}">
         <div class="map-container">
             {{> googleMap name="placesMap" options=placesMapOptions}}
         </div>
@@ -15,23 +16,29 @@
         <table>
             <tr>
                 <td>
-                    <fieldset>
+                    <div class="filterhead">
+                        FlightLight:
+                    </div>
+                    <fieldset class="options">
                         <label class="flightLight3">
                             <input type="checkbox">
-                            {{_ "green"}}
+                            {{_ "allowed"}}
                         </label><br>
                         <label class="flightLight2">
                             <input type="checkbox">
-                            {{_ "yellow"}}
+                            {{_ "arrangement"}}
                         </label><br>
                         <label class="flightLight1">
                             <input type="checkbox">
-                            {{_ "red"}}
+                            {{_ "denied"}}
                         </label>
                     </fieldset>
                 </td>
                 <td>
-                    <fieldset class="privatePropertyFilter">
+                    <div class="filterhead">
+                        {{_ "isPrivateProperty"}}
+                    </div>
+                    <fieldset class="privatePropertyFilter options">
                         <input type="radio" id="privateProperty" name="privateProperty" value="true">
                         <label for="privateProperty"> {{_ "onlyPrivateProperty"}}</label><br>
                         <input type="radio" id="nonPrivateProperty" name="privateProperty" value="false">

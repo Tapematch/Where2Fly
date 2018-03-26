@@ -1,17 +1,41 @@
 <template name="newplaceinfo">
     <h4 style="color: green">{{_ "newPlace"}}</h4>
     <form class="place-form">
-        {{_ "title"}}:<br>
-        <input type="text" name="title" value={{place.title}} /><br>
-        {{_ "latitude"}}:<br>
-        {{searchLat}}<br>
-        {{_ "longitude"}}:<br>
-        {{searchLng}}<br>
-        {{_ "flightLight"}}:<br>
-        <input type="number" name="flightLight" step="1" min="1" max="3" value=1><br>
-        {{_ "privateProperty"}}: <input type="checkbox" name="privateProperty" checked="{{place.privateProperty}}" class="toggle-privateProperty" ><br>
+        <div class="newtitle newplaceinput">
+            <label>{{_ "title"}}:</label><br>
+            <input type="text" class="form-control" name="title" value={{place.title}}/>
+        </div>
+
+        <div class="newFlightlight newplaceinput">
+
+            <label for="flightLight">Flightlight:</label><br>
+            <input id="ex22" type="text" name="newflightLight"
+                   data-provide="slider"
+                   data-slider-ticks="[1, 2, 3]"
+                   data-slider-min="1"
+                   data-slider-max="3"
+                   data-slider-step="1"
+                   data-slider-value="{{place.flightLight}}"
+                   data-slider-tooltip="show"
+                   data-slider-rangeHighlights='[{ "start": -1, "end": 1, "class": "category1" },
+                                   { "start": 1, "end": 3, "class": "category2" }]'/>
+        </div>
+
+        <div class="newPrivateProperty newplaceinput">
+            <div class="property-switch">
+                <!-- Rounded switch -->
+                <label for="property">{{_ "isPrivateProperty"}}</label><br>
+                <label class="switch">
+                    <input type="checkbox" name="newprivateProperty"
+                           checked="{{place.privateProperty}}"
+                           class="form-control toggle-privateProperty">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
         {{#if currentUser}}
-        <input type="submit" value="{{_ "saveNewPlace"}}" />
+            <input type="submit" class="btn btn-primary" value="{{_ "saveNewPlace"}}"/>
         {{else}}
         <p>{{_ "loginCreatePlace"}}</p>
         {{/if}}
