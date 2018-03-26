@@ -6,6 +6,7 @@
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     </heroimage>
     <div class="container margin-bottom">
         <h1>{{displayValues.title}}</h1>
@@ -47,7 +48,7 @@
         <div class="photos">
             <h3>{{_ "photos"}}</h3>
         <div class="row">
-            <div class="gallery grid">
+            <div class="gallery grid" data-masonry='{ "itemSelector": ".grid-item" }'>
                 {{#each photos}}
                     {{> photo}}
                 {{/each}}

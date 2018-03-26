@@ -18,5 +18,11 @@
   "flightLight": "flightlight",
   "saveNewPlace": "Save new place",
   "loginCreatePlace": "Please log in to create a new place",
-  "details": "Details"
+  "details": "Details",
+  "info1": "Find places and scenes worth a visit with your drone.",
+  "info2": "Post places and reveal if they are suitable for drones.",
+  "info3": "Exchange experiences, photos and profiles with other dronepilots.",
+  "infohead1": "Discover",
+  "infohead2": "Share",
+  "infohead3": "Profile"
 }

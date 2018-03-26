@@ -10,8 +10,6 @@
 
     <![endif]-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.1/masonry.pkgd.min.js"></script>
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 
 
     <link rel="stylesheet"
@@ -22,10 +20,15 @@
 <body>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
-    <header>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.1/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+<header>
         {{> Template.dynamic template=header}}
     </header>
-    {{> Template.dynamic template=body}}
+{{> Template.dynamic template=body}}
+{{> Template.dynamic template=content}}
+
     <footer>
         {{> Template.dynamic template=footer}}
     </footer>

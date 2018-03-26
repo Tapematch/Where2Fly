@@ -18,5 +18,11 @@
   "flightLight": "Flug-Ampel",
   "saveNewPlace": "Neuen Ort speichern",
   "loginCreatePlace": "Bitte einloggen um einen neuen Ort zu erstellen",
-  "details": "Details"
+  "details": "Details",
+  "info1": "Finde Orte und Motive, die du mit dreiner Drohne besuchen kannst.",
+  "info2": "Trage deine Orte ein und zeige, ob sie für Drohnenflüge geeignet sind.",
+  "info3": "Tausche Erfahrungen, Bilder und Profile mit anderen Drohnenpiloten.",
+  "infohead1": "Entdecke",
+  "infohead2": "Teile",
+  "infohead3": "Profitiere"
 }

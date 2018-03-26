@@ -25,6 +25,8 @@ Template.detail.onCreated(function () {
         });
         map.instance.fitBounds(bounds);
     });
+
+
 });
 
 Template.editPlaceModal.onRendered(function () {
@@ -45,29 +47,6 @@ Template.editPlaceModal.onRendered(function () {
             }
         },
     });
-
-    var elem = document.querySelector('.grid');
-    var msnry = new Masonry(elem, {
-        // options
-        itemSelector: '.grid-item',
-    });
-
-// element argument can be a selector string
-//   for an individual element
-    var msnry = new Masonry('.grid', {
-        // options
-    });
-
-    // layout Masonry after each image loads
-    $grid.imagesLoaded().progress(function () {
-        $grid.masonry('layout');
-    });
-
-    // external js: masonry.pkgd.js
-
-
-
-
 
 });
 
@@ -139,6 +118,7 @@ Template.detail.helpers({
             };
         }
     },
+
     comments() {
         var pid = FlowRouter.getParam("pid");
         return Comments.find({"place": pid}, {sort: {createdAt: -1}});
