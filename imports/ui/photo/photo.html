@@ -1,7 +1,9 @@
 <template name="photo">
     <div class="col-sm-6 col-md-3">
         <div class="thumbnail">
-            <img src="{{url}}" alt="Photo" style="width:100%">
+            <a data-fancybox="gallery" href="{{url}}">
+                <img src="{{toThumbnail url}}" alt="Photo" style="width:100%">
+            </a>
             <div class="caption">
                 <p>
                     {{#unless isCurrentPlace place}}

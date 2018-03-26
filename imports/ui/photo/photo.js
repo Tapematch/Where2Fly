@@ -19,6 +19,9 @@ Template.photo.helpers({
     getPlaceName(placeId) {
         var place = Places.findOne({_id: placeId});
         return place.title;
+    },
+    toThumbnail(imageUrl) {
+        return Imgur.toThumbnail(imageUrl, Imgur.MEDIUM_THUMBNAIL);
     }
 });
 
