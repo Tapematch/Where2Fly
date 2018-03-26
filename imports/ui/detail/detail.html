@@ -7,7 +7,7 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     </heroimage>
-    <div class="container">
+    <div class="container margin-bottom">
         <h1>{{displayValues.title}}</h1>
 
         <div class="row">
@@ -57,7 +57,7 @@
 
         <div class="comments-wrapper">
             <h3>{{_ "comments"}}</h3>
-            <div class="comments">
+            <div class="comments row">
                 {{#each comments}}
                     {{> comment}}
                 {{/each}}
@@ -116,7 +116,7 @@
                         <textarea class="form-control" name="comment" cols="60" rows="5"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger save">{{_ "saveComment"}}</button>
+                        <button type="submit" class="btn btn-primary save">{{_ "saveComment"}}</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">{{_ "cancel"}}</button>
                     </div>
                 </form>
@@ -201,13 +201,15 @@
                             <div class="modal-body">
                                 <label for="url">URL</label>
                                 <input class="form-control" placeholder="URL" type="url" name="url">
-                                <p></p><p><a target="_blank" href="https://imgur.com/tos">{{_ "imgurTOS"}}</a></p>
+                                <p></p>
+                                <p><a target="_blank" href="https://imgur.com/tos">{{_ "imgurTOS"}}</a></p>
                             </div>
                         </div>
                         <div id="imgur" class="tab-pane fade in">
                             <div class="modal-body">
                                 <input name="photo" type="file" size="50" accept="image/*">
-                                <p></p><p><a target="_blank" href="https://imgur.com/tos">{{_ "imgurTOS"}}</a></p>
+                                <p></p>
+                                <p><a target="_blank" href="https://imgur.com/tos">{{_ "imgurTOS"}}</a></p>
                             </div>
                         </div>
                     </div>

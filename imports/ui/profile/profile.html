@@ -7,23 +7,49 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     </heroimage>
-    <div class="container">
-        <h3>{{_ "user"}}</h3>
-        <ul>
-            <li>{{_ "username"}}: {{user.username}}</li>
-            <li>{{_ "email"}}: {{user.emails.[0].address}}</li>
-            <li>{{_ "phone"}}: {{user.profile.phone}}</li>
-        </ul>
-        <h3>{{_ "profile"}}</h3>
-        <ul>
-            <li>{{_ "name"}}: {{user.profile.fullname}}</li>
-            <li>{{#unless user.profile.commercial}}{{_ "nonCommercial"}}{{else}}{{_ "commercial"}}{{/unless}}</li>
-            <li>UAVs: {{user.profile.uavs}}</li>
-            <li>{{_ "website"}}: {{user.profile.website}}</li>
-            <li>Facebook: {{user.profile.facebook}}</li>
-            <li>Twitter: {{user.profile.twitter}}</li>
-            <li>Instagram: {{user.profile.instagram}}</li>
-        </ul>
+    <div class="container margin-top">
+        <div class="profileedits margin-bottom">
+
+
+            <div class="profileinfo">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{_ "profile"}} / {{_ "user"}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-sm-6">
+                            <ul class="list-group">
+                                <li class="list-group-item">{{_ "username"}}: {{user.username}}</li>
+                                <li class="list-group-item">{{_ "email"}}: {{user.emails.[0].address}}</li>
+                                <li class="list-group-item">{{_ "phone"}}: {{user.profile.phone}}</li>
+                                <li class="list-group-item">{{_ "name"}}: {{user.profile.fullname}}</li>
+                                <li class="list-group-item">{{#unless user.profile.commercial}}{{_
+                                        "nonCommercial"}}{{else}}{{_ "commercial"}}{{/unless}}</li>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <ul class="list-group">
+
+                                <li class="list-group-item">UAVs: {{user.profile.uavs}}</li>
+                                <li class="list-group-item">{{_ "website"}}: <a
+                                        href="{{user.profile.website}}"> {{user.profile.website}}</a></li>
+                                <li class="list-group-item">Facebook: <a
+                                        href="{{user.profile.facebook}}">{{user.profile.facebook}}</a></li>
+                                <li class="list-group-item">Twitter: <a
+                                        href="{{user.profile.twitter}}">{{user.profile.twitter}}</a></li>
+                                <li class="list-group-item">Instagram: <a
+                                        href="{{user.profile.instagram}}">{{user.profile.instagram}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
 
         <div class="user-actions">
             {{#if isCurrentUser}}
@@ -37,19 +63,24 @@
                     class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             </button>
         </div>
+
+        <div class="comments margin-top">
         <h3>{{_ "comments"}}</h3>
-        <div class="row">
+            <div class="commentslist row">
             {{#each comments}}
                 {{> comment}}
             {{/each}}
         </div>
+        </div>
+
+        <div class="photos">
         <h3>{{_ "photos"}}</h3>
-        <div class="gallery">
+            <div class="grid gallery row">
             {{#each photos}}
                 {{> photo}}
             {{/each}}
         </div>
-        <div class="row"></div>
+        </div>
     </div>
 </template>
 
@@ -62,35 +93,71 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="editProfileModalLabel">{{currentUser.username}}</h4>
                 </div>
-                <div class="modal-body">
                     <form class="place-form-edit save">
-                        {{_ "phone"}}:<br>
-                        <input autocomplete="tel-national" type="tel" name="phone"
-                               value={{currentUser.profile.phone}}><br>
-                        <hr>
-                        {{_ "name"}}:<br>
-                        <input autocomplete="name" type="text" name="fullname"
-                               value={{currentUser.profile.fullname}}><br>
-                        {{_ "commercial"}}:<br>
-                        <input type="checkbox" name="commercial" checked={{currentUser.profile.commercial}}><br>
-                        UAVs:<br>
-                        <input type="text" name="uavs" value={{currentUser.profile.uavs}}><br>
-                        {{_ "website"}}:<br>
-                        <input type="url" name="website" value={{currentUser.profile.website}}><br>
-                        Facebook:<br>
-                        <input type="text" name="facebook" value={{currentUser.profile.facebook}}><br>
-                        Twitter:<br>
-                        <input type="text" name="twitter" value={{currentUser.profile.twitter}}><br>
-                        Instagram:<br>
-                        <input type="text" name="instagram" value={{currentUser.profile.instagram}}><br>
+                        <div class="modal-body">
 
-                        <button type="submit" class="btn btn-primary save">{{_ "saveProfile"}}</button>
-                    </form>
 
-                </div>
+                            <div class="form-group">
+                                <label for="phone">{{_ "phone"}}</label>
+                                <input type="tel" autocomplete="tel-national" class="form-control" name="phone"
+                                       value={{currentUser.profile.phone}}>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="name">{{_ "name"}}</label>
+                                <input type="text" autocomplete="name" class="form-control" name="fullname"
+                                       value={{currentUser.profile.fullname}}>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="commercial">{{_ "commercial"}}</label>
+                                <input type="checkbox" autocomplete="commercial" class="form-control" name="commercial"
+                                       value={{currentUser.profile.commercial}}>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="UAVs">UAVs</label>
+                                <input type="text" class="form-control" name="uavs" value={{currentUser.profile.uavs}}>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="website">{{_ "website"}}</label>
+                                <input type="url" class="form-control" name="website"
+                                       value={{currentUser.profile.website}}>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="facebook">Facebook</label>
+                                <input type="text" class="form-control" name="facebook"
+                                       value={{currentUser.profile.facebook}}>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="twitter">Twitter</label>
+                                <input type="text" class="form-control" name="twitter"
+                                       value={{currentUser.profile.twitter}}>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="instagram">Instagram</label>
+                                <input type="text" class="form-control" name="instagram"
+                                       value={{currentUser.profile.instagram}}>
+                            </div>
+
+
+                        </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal">{{_ "cancel"}}</button>
+                    <button type="submit" class="btn btn-primary save">{{_ "saveProfile"}}</button>
                 </div>
+                    </form>
             </div>
         </div>
     </div>

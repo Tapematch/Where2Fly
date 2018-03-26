@@ -239,8 +239,8 @@ Template.uploadPhotoModal.events({
                 };
             }
 
-            var imgurCallback = function(errMsg, imgurData) {
-                if ( errMsg ) return alert('File upload failed. Please upload an image of a smaller file size');
+            var imgurCallback = function (errMsg, imgurData) {
+                if (errMsg) return alert('File upload failed. Please upload an image of a smaller file size');
                 var place = FlowRouter.getParam("pid");
                 var url = imgurData.link;
                 var deleteHash = imgurData.deletehash;
@@ -251,7 +251,7 @@ Template.uploadPhotoModal.events({
             if (event.target.photo.files.length != 0) {
                 var file = event.target.photo.files[0];
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     Imgur.upload(uploadOptions(e.target.result), imgurCallback);
                 };
                 reader.readAsDataURL(file);
