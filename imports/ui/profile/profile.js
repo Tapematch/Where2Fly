@@ -10,46 +10,49 @@ import {Comments} from "../../api/comments";
 var visiblemarkers = [];
 
 Template.profile.onCreated(function () {
-    var places;
-    var likedPlaces;
-    Tracker.autorun(() => {
-        var userId = FlowRouter.getQueryParam("userId");
-        if (typeof userId == 'undefined') {
-            userId = Meteor.userId();
-        }
-        places = Places.find({"owner": userId});
-
-        var user = Meteor.users.findOne(userId);
-        var likes = user.profile.likes;
-        likedPlaces = Places.find({_id: {$in: likes}});
-    });
-
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('myprofileMap', function (map) {
-
+        var places;
+        var likedPlaces;
         var bounds = new google.maps.LatLngBounds();
 
-        places.observe({
-            added(place) {
-                var marker = placeMarkerOnMap(false, place, map);
-                bounds.extend(marker.getPosition());
-            },
-            removed(oldPlace) {
-                deleteMarker(oldPlace._id);
+        Tracker.autorun(() => {
+            var userId = FlowRouter.getQueryParam("userId");
+            if (typeof userId == 'undefined') {
+                userId = Meteor.userId();
             }
-        });
+            places = Places.find({"owner": userId});
+            places.observe({
+                added(place) {
+                    var marker = placeMarkerOnMap(false, place, map);
+                    bounds.extend(marker.getPosition());
+                },
+                removed(oldPlace) {
+                    deleteMarker(oldPlace._id);
+                }
+            });
 
-        likedPlaces.observe({
-            added(place) {
-                var marker = placeMarkerOnMap(true, place, map);
-                bounds.extend(marker.getPosition());
-            },
-            removed(oldPlace) {
-                deleteMarker(oldPlace._id);
+            var user = Meteor.users.findOne(userId);
+            if (typeof user !== 'undefined') {
+                var profile = user.profile;
+                if (typeof profile !== 'undefined') {
+                    var likes = user.profile.likes;
+                    likedPlaces = Places.find({_id: {$in: likes}});
+
+                    likedPlaces.observe({
+                        added(place) {
+                            var marker = placeMarkerOnMap(true, place, map);
+                            bounds.extend(marker.getPosition());
+                        },
+                        removed(oldPlace) {
+                            deleteMarker(oldPlace._id);
+                        }
+                    });
+                }
             }
-        });
 
-        map.instance.fitBounds(bounds);
+            map.instance.fitBounds(bounds);
+        });
     });
 });
 
