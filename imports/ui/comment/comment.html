@@ -1,19 +1,24 @@
 <template name="comment">
-    <div class="col-sm-6 grid">
+    <div class="col-sm-6 grid comment">
     <div class="panel panel-default">
         <div class="panel-body">
             {{comment}}
         </div>
         <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
             {{#unless isCurrentPlace place}}
-                <div class="col-sm-6 row">
+
                 <a href="/place/{{place}}"><i class="fa fa-map-marker" aria-hidden="true"></i> {{getPlaceName
                         place}}
                 </a>
-                </div>
+
             {{/unless}}
+
+                </div>
             {{#if isCurrentUser owner}}
-                <div class="removecomment text-right co-sm-6">
+
+                <div class="removecomment text-right col-sm-6">
                 <button type="button" class="btn btn-danger delete"><span class="glyphicon glyphicon-remove"
                                                                           aria-hidden="true"></span> {{_
                         "deleteComment"}}
@@ -21,15 +26,20 @@
                 </div>
             {{else}}
                 {{#unless isUserProfile}}
-                    <a href="/profile?userId={{owner}}"><i class="fa fa-user"
-                                                           aria-hidden="true"></i> {{username}}
-                    </a>
+                    <div class="userprofile">
+                        <a href="/profile?userId={{owner}}"><i class="fa fa-user"
+                                                               aria-hidden="true"></i> {{username}}
+                        </a>
+                    </div>
                 {{/unless}}
 
+                <div class="col-sm-6 reportcomment text-right">
                 <button type="button" class="btn btn-secondary report" title="{{_ "reportComment"}}"><i
                         class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                 </button>
+                </div>
             {{/if}}
+        </div>
         </div>
     </div>
     </div>

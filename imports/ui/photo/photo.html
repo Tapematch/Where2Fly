@@ -12,21 +12,26 @@
                         </a>
                     {{/unless}}
                 </p>
-                <p>
+
                     {{#if isCurrentUser owner}}
                         <button type="button" class="btn btn-danger delete"><span class="glyphicon glyphicon-remove"
                                                                                   aria-hidden="true"></span> {{_ "deletePhoto"}}
                         </button>
                     {{else}}
                         {{#unless isUserProfile}}
-                            <a href="/profile?userId={{owner}}"><i class="fa fa-user"
-                                                                   aria-hidden="true"></i> {{username}}
-                            </a>
+                            <div class="userlink">
+                                <a href="/profile?userId={{owner}}"><i class="fa fa-user"
+                                                                       aria-hidden="true"></i> {{username}}
+                                </a>
+                            </div>
                         {{/unless}}
+
+                        <div class="report">
                         <button type="button" class="btn btn-secondary report" title="{{_ "reportPhoto"}}"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                         </button>
+                        </div>
                     {{/if}}
-                </p>
+
             </div>
         </div>
     </div>
