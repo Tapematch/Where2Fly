@@ -14,17 +14,14 @@ Template.profile.onCreated(function () {
     var likedPlaces;
     Tracker.autorun(() => {
         var userId = FlowRouter.getQueryParam("userId");
-        var user;
-        if (typeof userId == 'undefined' || userId == Meteor.userId()) {
+        if (typeof userId == 'undefined') {
             userId = Meteor.userId();
-            user = Meteor.user();
-        } else {
-            user = Meteor.users.findOne(userId);
         }
         places = Places.find({"owner": userId});
+
+        var user = Meteor.users.findOne(userId);
         var likes = user.profile.likes;
         likedPlaces = Places.find({_id: {$in: likes}});
-
     });
 
     // We can use the `ready` callback to interact with the map API once the map is ready.
