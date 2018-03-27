@@ -222,3 +222,25 @@ div.tooltip.tooltip-main.top {
     padding: 0;
   }
 }
+
+.thumbnail {
+  .report {
+    float: right;
+    margin-top: -15px;
+  }
+}
+
+.reportcomment {
+  float: right;
+}
+
+.userprofile {
+  position: absolute;
+  left: 45%;
+}
+
+.commentondetail {
+  .removecomment {
+    text-align: left;
+  }
+}
