@@ -21,7 +21,7 @@ Template.photo.helpers({
         return place.title;
     },
     toThumbnail(imageUrl) {
-        return Imgur.toThumbnail(imageUrl, Imgur.MEDIUM_THUMBNAIL);
+        return Imgur.toThumbnail(imageUrl, Imgur.BIG_SQUARE);
     }
 });
 
